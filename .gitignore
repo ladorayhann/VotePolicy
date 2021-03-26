@@ -60,3 +60,5 @@ staticfiles/
 
 # ignore virtual environment
 env/
+env/**
+env/*
