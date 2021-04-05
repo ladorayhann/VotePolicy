@@ -1,0 +1,43 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="homepage">
+    <div class="container-fluid" style="height:100vh;">
+        <!-- background -->
+        <div class="row">
+            <img src="{% static 'img/bg-demokrasi.png' %}" width="100%" alt="bg">
+        </div>
+        
+        <!-- kampanye -->
+        <div class="row justify-content-md-center">
+                <div class="col text-center">
+                    <h2 class="judul">Kampanye Terpopuler</h2>
+                </div>
+        </div>
+        <div class="row justify-content-md-center kartu-p">
+            <div class="col-md-6 mx-auto d-flex justify-content-center">
+                <div class="card" style="width: 30rem;">
+                    <img src="{% static 'img/contoh.png' %}" width="100%" alt="bg">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem Ipsum</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis.  ... selanjutnya</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto d-flex justify-content-center">
+                <div class="card" style="width: 30rem;">
+                    <img src="{% static 'img/contoh.png' %}" width="100%" alt="bg">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem Ipsum</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis.  ... selanjutnya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+  
+{% endblock body %}
+</html>

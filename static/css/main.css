@@ -1,0 +1,50 @@
+*{
+    font-family: Inter;
+}
+
+/* navbar */
+.mynav {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+/* .container {
+    position: relative;
+    width: 100%;
+    max-width: 400px; 
+ }
+.container img {
+    width: 100%;
+    height: auto;
+}
+.container .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: white;
+    color: #8D0507;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}  */
+
+/*cards*/
+.kartu{
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.kartu-p{
+    padding-top: 2%;
+}
+
+.judul{
+    text-decoration: underline solid #D8BFD8;
+    font-weight: 600;
+    font-size: 30px;
+    padding-top: 4%;
+}
