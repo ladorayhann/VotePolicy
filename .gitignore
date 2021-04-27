@@ -62,3 +62,7 @@ staticfiles/
 env/
 env/**
 env/*
+
+.env
+.DS_Store
+static/.DS_Store

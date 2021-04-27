@@ -1,6 +1,10 @@
 {% extends 'navbar.html' %}
 {% load static %}
 
+{% block style %}
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+{% endblock style %}
+
 {% block body %}
 
 <div class="homepage">
@@ -11,7 +15,7 @@
         </div>
         
         <!-- kampanye -->
-        <div class="row justify-content-md-center">
+        <div class="row justify-contaent-md-center">
                 <div class="col text-center">
                     <h2 class="judul">Kampanye Terpopuler</h2>
                 </div>

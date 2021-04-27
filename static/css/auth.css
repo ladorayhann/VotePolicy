@@ -1,0 +1,202 @@
+*{
+  font-family: Inter;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+
+/* navbar */
+.mynav {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+/*cards*/
+.kartu{
+  padding-top: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.kartu-p{
+  padding-top: 2%;
+}
+
+.judul{
+  text-decoration: underline solid #D8BFD8;
+  font-weight: 600;
+  font-size: 30px;
+  padding-top: 4%;
+}
+
+.row {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.container-fluid {
+  height: 100vh;
+  padding: 0;
+  overflow-y: hidden;
+  overflow-x:hidden;
+}
+
+.login {
+  height: 100%;
+  max-height: fit-content;
+  overflow-y: hidden;
+  overflow-x:hidden;
+}
+
+.column {
+float: left;
+width: 50%;
+padding: 0; /* Should be removed. Only for demonstration */
+margin: 0;
+}
+
+.bg-column img {
+width: 100%;
+height: 100%;
+}
+
+
+.login-col {
+background-color: rgb(196,196,196, 0.15);
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.card-body-login {
+  background-color: white;
+  height: 400px;
+  margin: 3%;
+  padding: 0;
+  border-radius: 2%;
+  border-style: solid;
+  border-color: #000;
+  border-width: thin;
+  box-shadow: 1px 3px rgb(0,0,0, 0.15);
+}
+
+.card-body-register {
+  background-color: white;
+  height: 600px;
+  margin: 3%;
+  padding: 0;
+  border-radius: 2%;
+  border-style: solid;
+  border-color: #000;
+  border-width: thin;
+  box-shadow: 1px 3px rgb(0,0,0, 0.15);
+}
+
+
+.container {
+  text-align: center;
+  margin: 20px;
+  padding-right: 7vh;
+  padding-left: 5vh;
+  width: fit-content;
+}
+
+label {
+  display: block;
+}
+
+::placeholder {
+  color: rgb(0,0,0, 0.40);
+  opacity: 1;
+  font-weight: 300
+}
+
+:-ms-input-placeholder {
+  color:rgb(0,0,0, 0.40);
+  font-weight: 300
+}
+
+::-ms-input-placeholder {
+  color: rgb(0,0,0, 0.40);
+  font-weight: 300
+}
+
+input,
+textarea {
+  padding: 10px 12px 10px 12px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2C3E50;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background-color: #FEE0E1;
+}
+
+input:focus,
+textarea:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  border: 1px solid #9D090B;
+  outline-width: 0
+}
+
+button:focus {
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-width: 0
+}
+
+a {
+  color:inherit;
+  cursor: pointer
+}
+
+a:hover {
+  color: #9D090B;
+}
+
+.btn-red {
+  background-color: #9D090B;
+  width: 150px;
+  color: #fff;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.btn-red:hover {
+  background-color: #790507;
+  cursor: pointer;
+  color: #fff;
+
+}
+
+.bg-blue {
+  color: #fff;
+  background-color: #9D090B;
+}
+
+u {
+  color: #9D090B;
+  cursor: pointer;
+}
+
+u:hover {
+  color: #790507;
+}
+
+small {
+  width: 100%;
+}
