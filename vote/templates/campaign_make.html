@@ -1,0 +1,206 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'css/campaign.css' %}" rel="stylesheet">
+<script src="{% static 'js/svg-inject.min.js' %}"></script>
+{% endblock style %}
+
+{% block body %}
+    <div class="page-container">
+        <div class="steps-container">
+            <div class="steps-group">
+                <h1>Langkah</h1>
+                <ul class="steps-list">
+                    <li class="step-item">
+                        <div class="step active">1</div>
+                        <p>Memilih Topik</p>
+                    </li>
+                    <li class="step-item">
+                        <div class="step">2</div>
+                        <p>Membuat Sesuatu</p>
+                    </li>
+                    <li class="step-item">
+                        <div class="step">3</div>
+                        <p>Membuat Deskripsi</p>
+                    </li>
+                    <li class="step-item">
+                        <div class="step">4</div>
+                        <p>Perkuat Kampanyemu</p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <form class="form-box" action="" id="campaign-form">
+            <div class="tab">
+                <div class="form-field">
+                    <div class="field-title">
+                        <h2 class="field-header">
+                            Kampanye apa yang ingin kamu unggah    
+                        </h2>
+                        <h2 class="question-mark">?</h2>
+                    </div>
+        
+                    <div class="radio-inputs">
+                        <label class="radio-item">
+                            <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan">
+                            <img class="input-img" src="{% static 'img/lingkungan.svg' %}" alt="lingkungan" onload="SVGInject(this)">
+                            <span>Lingkungan</span>
+                        </label>
+                        <label class="radio-item">
+                            <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol">
+                            <img class="input-img" src="{% static 'img/sospol.svg' %}" alt="sospol" onload="SVGInject(this)">
+                            <span>Sosial Politik</span>
+                        </label>
+                        <label class="radio-item">
+                            <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum">
+                            <img class="input-img" src="{% static 'img/hukum.svg' %}" alt="hukum" onload="SVGInject(this)">
+                            <span>Hukum</span>
+                        </label>
+                        <label class="radio-item">
+                            <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
+                            <img class="input-img" src="{% static 'img/ekonomi.svg' %}" alt="ekonomi" onload="SVGInject(this)">
+                            <span>Ekonomi</span>
+                        </label>
+                        <label class="radio-item">
+                            <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan">
+                            <img class="input-img" src="{% static 'img/pendidikan.svg' %}" alt="pendidikan" onload="SVGInject(this)">
+                            <span>Pendidikan</span>
+                        </label>
+                        <label class="radio-item">
+                            <input class="input-radio" type="radio" name="jenis_kampanye" value="others">
+                            <img class="input-img" src="{% static 'img/others.svg' %}" alt="others" onload="SVGInject(this)">
+                            <span>Lainnya</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="form-field">
+                    <div class="field-title">
+                        <h2 class="field-header">
+                            Tuliskan judul kampanyemu    
+                        </h2>
+                        <h2 class="question-mark">!</h2>
+                    </div>
+                    <input type="text" class="input-text" maxlength="30"></input>
+                    <small class="field-max-char">max-character. 30</small>
+                    <div class="field-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac ullamcorper elit nec enim ut diam fermentum purus et.
+                        Phasellus pulvinar amet adipiscing eu sed. Sed eget ullamcorper elementum, leo sem nunc. Pharetra neque dui, laoreet
+                        fames volutpat aliquet libero, consectetur vulputate. Orci, purus congue sodales tellus id lectus dolor. Est enim, vitae
+                        eu massa maecenas metus.
+                    </div>
+                </div>
+    
+                <div class="form-field">
+                    <div class="field-title">
+                        <h2 class="field-header">
+                            Siapa yang harus peduli dengan kampanyemu
+                        </h2>
+                        <h2 class="question-mark">?</h2>
+                    </div>
+                    <input type="text" class="input-text" maxlength="30"></input>
+                    <small class="field-max-char">max-character. 30</small>
+                    <div class="field-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac ullamcorper elit nec enim ut diam fermentum purus et.
+                        Phasellus pulvinar amet adipiscing eu sed. Sed eget ullamcorper elementum, leo sem nunc. Pharetra neque dui, laoreet
+                        fames volutpat aliquet libero, consectetur vulputate. Orci, purus congue sodales tellus id lectus dolor. Est enim, vitae
+                        eu massa maecenas metus.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="form-field">
+                    <div class="field-title">
+                        <h2 class="field-header">
+                            Berikan deskripsi mengenai kampanye yang ingin kamu unggah        
+                        </h2>
+                        <h2 class="question-mark">!</h2>
+                    </div>
+                    <textarea class="input-text" maxlength="1000"></textarea>
+                    <small class="field-max-char">max-character. 1000</small>
+                    <div class="field-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac ullamcorper elit nec enim ut diam fermentum purus et.
+                        Phasellus pulvinar amet adipiscing eu sed. Sed eget ullamcorper elementum, leo sem nunc. Pharetra neque dui, laoreet
+                        fames volutpat aliquet libero, consectetur vulputate. Orci, purus congue sodales tellus id lectus dolor. Est enim, vitae
+                        eu massa maecenas metus.
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="form-field">
+                    <div class="field-title">
+                        <h2 class="field-header">
+                            Tambahkan media atau dokumen untuk mendukung kampanyemu
+                        </h2>
+                        <h2 class="question-mark">!</h2>
+                    </div>
+                    <label class="input-file-box">
+                        <input type="file" class="input-file">
+                        <div class="input-button">Pilih File</div>
+                    </label>
+                    <table class="input-url-table">
+                        <tr>
+                            <td class="input-url-label"> https:// </td>
+                            <td class="input-td"> <input class="input-url" type="url"> </td>
+                        </tr>
+                    </table>
+                    <div class="field-description">
+                        <ul class="description-list">
+                            <li>Maksimal 2 Mb</li>
+                            <li>Pilih gambar yang mewakili kebijakan yang akan Anda angkat (MInimal 1 gambar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <!-- <button type="button" class="button-fill" id="prev" onclick="nextPrev(-1)">KEMBALI</button> -->
+                <button type="button" class="button-fill" id="next" onclick="nextPrev(1)">LANJUT</button>
+
+            </div>
+        </form>
+    </div>
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+
+
+    {% if messages %}
+        {% for m in messages %}
+            {% if 'failed' in m.tags %}
+                <script type="text/javascript">
+                  Swal.fire({
+                      "title": "Gagal",
+                      "text": "{{m}}",
+                      "icon": "error"
+
+                  })
+                  
+                </script>
+            {% else %}
+            <script type="text/javascript">
+                Swal.fire({
+                    "title": "Kampanyemu Berhasil Dibuat",
+                    "text": "{{m}}",
+                    "icon": "success",
+                    "confirmButtonText": 'LIHAT',
+                })
+                
+            </script>
+                
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock body %}
+
+{% block script %}
+<script src="{% static 'js/campaign.js' %}" ></script>
+
+{% endblock script %}

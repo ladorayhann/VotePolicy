@@ -77,3 +77,7 @@ def logout(request):
     auth_logout(request)
     return redirect('login')
 
+# progress
+def campaign_make(request):
+    return render(request, 'campaign_make.html')
+
