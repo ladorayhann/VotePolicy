@@ -86,19 +86,11 @@ function nextPrev(n) {
   }
 
   function showFile(e) {
-    const [file] = e.target.files;
-    console.log(file)
-    console.log([file])
-    // Get the file name and size
-    const { name: fileName, size } = file;
-    // Convert size in bytes to kilo bytes
-    const fileSize = (size / 1000).toFixed(2);
-    // Set the text content
-    // const fileNameAndSize = `${fileName} - ${fileSize}KB`;
-    const fileinfo = document.querySelector('.input-file-name')
+    const fileName = e.target.files[0].name
+    const inputFileName = document.querySelector('.input-file-name')
     const inputButton = document.querySelector('.input-button')
-    fileinfo.textContent = fileName;
-    fileinfo.style.display = 'block';
+    inputFileName.textContent = fileName;
+    inputFileName.style.display = 'block';
     inputButton.textContent = 'Ubah File'
   }
 
