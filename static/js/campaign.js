@@ -2,7 +2,6 @@ let currentTab = 0;
 showTab(currentTab)
 
 function showTab(n) {
-    console.log(n)
     // This function will display the specified tab of the form
     let tabs = document.getElementsByClassName('tab')
     tabs[n].style.display = "block"
@@ -25,10 +24,7 @@ function nextPrev(n) {
     // This function will figure out which tab to display
     let tabs = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
-    // console.log(validateForm(n))
     if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    tabs[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
     // if you have reached the end of the form... :
@@ -37,27 +33,25 @@ function nextPrev(n) {
       document.getElementById("campaign-form").submit();
       return false;
     }
+    // Hide the previous tab:
+    tabs[currentTab-1].style.display = "none";
     // Otherwise, display the correct tab:
     showTab(currentTab);
   }
 
   function validateForm() {
     // This function deals with validation of the form fields
-    console.log(currentTab)
     let valid = true;
     switch(currentTab) {
       case 0:
-        console.log(document.querySelectorAll('input[type="radio"]:checked'))
         if (document.querySelectorAll('.input-radio:checked').length < 1) {
           valid = false
         }
-        console.log(valid)
         break;
       case 1:
       case 2:
         const tabs = document.getElementsByClassName('tab')
         const inputs = tabs[currentTab].getElementsByClassName('input-text')
-        console.log(inputs)
         for (i =0; i < inputs.length; i++) {
           inputs[i].className = (inputs[i].value === '') ? 'input-text invalid': 'input-text'
           if (inputs[i].value === '') {
@@ -90,3 +84,22 @@ function nextPrev(n) {
     x[n].className += " active";
     x[n].nextElementSibling.style.display = "block"
   }
+
+  function showFile(e) {
+    const [file] = e.target.files;
+    console.log(file)
+    console.log([file])
+    // Get the file name and size
+    const { name: fileName, size } = file;
+    // Convert size in bytes to kilo bytes
+    const fileSize = (size / 1000).toFixed(2);
+    // Set the text content
+    // const fileNameAndSize = `${fileName} - ${fileSize}KB`;
+    const fileinfo = document.querySelector('.input-file-name')
+    const inputButton = document.querySelector('.input-button')
+    fileinfo.textContent = fileName;
+    fileinfo.style.display = 'block';
+    inputButton.textContent = 'Ubah File'
+  }
+
+  document.querySelector('.input-file').addEventListener('change', (e) => {showFile(e)})
