@@ -81,3 +81,8 @@ def logout(request):
 def campaign_make(request):
     return render(request, 'campaign_make.html')
 
+def campaign_home(request):
+    return render(request, 'campaign_home.html')
+
+def campaign_detail(request):
+    return render(request, 'campaign_detail.html')
