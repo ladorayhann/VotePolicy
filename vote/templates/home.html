@@ -2,47 +2,123 @@
 {% load static %}
 
 {% block style %}
-<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
 {% endblock style %}
 
 {% block body %}
+    <div class="page-container">
+        <div class="page-header">
+            <img class="page-header-img" src="{% static 'img/title-demokrasi.svg' %}" alt="">
+            <a class="button-fill invert" href="#">Kampanyekan Suaramu</a>
+        </div>
+        <div class="page-content">
 
-<div class="homepage">
-    <div class="container-fluid" style="height:100vh;">
-        <!-- background -->
-        <div class="row">
-            <img src="{% static 'img/bg-demokrasi.png' %}" width="100%" alt="bg">
+            <h1 class="section-header">Kampanye Teropuler</h1>
+
+            <div id="card-slider" class="splide campaign-carousel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <div class="campaign-item">
+                                <h3 class="campaign-title">Lorem Ipsum</h3>
+                                <p class="campaign-description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                                    ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                                    consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                                    mauris etiam maecenas et ... selanjutnya
+                                </p>
+                                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <button class="button-fill vote">VOTE</button>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="campaign-item">
+                                <h3 class="campaign-title">Lorem Ipsum</h3>
+                                <p class="campaign-description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                                    ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                                    consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                                    mauris etiam maecenas et ... selanjutnya
+                                </p>
+                                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <button class="button-fill vote">VOTE</button>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="campaign-item">
+                                <h3 class="campaign-title">Lorem Ipsum</h3>
+                                <p class="campaign-description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                                    ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                                    consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                                    mauris etiam maecenas et ... selanjutnya
+                                </p>
+                                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <button class="button-fill vote">VOTE</button>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="campaign-item">
+                                <h3 class="campaign-title">Lorem Ipsum</h3>
+                                <p class="campaign-description">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                                    ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                                    consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                                    mauris etiam maecenas et ... selanjutnya
+                                </p>
+                                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <button class="button-fill vote">VOTE</button>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="splide__arrows">
+                    <button class="splide__arrow splide__arrow--prev carousel-button left"></button>
+                    <button class="splide__arrow splide__arrow--next carousel-button right"></button>
+                </div>
+            </div>
+
+            <h1 class="section-header">Kebijikan Teropuler</h1>
+
+            <div class="kebijakan-list">
+
+                <div class="kebijakan-item">
+                    <h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1>
+                    <div class="kebijakan-category">ekonomi</div>
+                    <p class="kebijakan-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                        mauris etiam maecenas et ... selanjutnya
+                    </p>
+                </div>
+
+                <div class="kebijakan-item">
+                    <h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1>
+                    <div class="kebijakan-category">ekonomi</div>
+                    <p class="kebijakan-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                        mauris etiam maecenas et ... selanjutnya
+                    </p>
+                </div>
+
+            </div>
         </div>
+
         
-        <!-- kampanye -->
-        <div class="row justify-content-md-center">
-                <div class="col text-center">
-                    <h2 class="judul">Kampanye Terpopuler</h2>
-                </div>
-        </div>
-        <div class="row justify-content-md-center kartu-p">
-            <div class="col-md-6 mx-auto d-flex justify-content-center">
-                <div class="card" style="width: 30rem;">
-                    <img src="{% static 'img/contoh.png' %}" width="100%" alt="bg">
-                    <div class="card-body">
-                        <h5 class="card-title">Lorem Ipsum</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis.  ... selanjutnya</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 mx-auto d-flex justify-content-center">
-                <div class="card" style="width: 30rem;">
-                    <img src="{% static 'img/contoh.png' %}" width="100%" alt="bg">
-                    <div class="card-body">
-                        <h5 class="card-title">Lorem Ipsum</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis.  ... selanjutnya</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-   
-  
+
 {% endblock body %}
-</html>
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script src="{% static 'js/home.js' %}" ></script>
+{% endblock script %}
