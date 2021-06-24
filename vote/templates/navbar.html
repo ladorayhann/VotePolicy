@@ -10,6 +10,7 @@
     
     <!-- Bootstrap CSS -->
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" integrity="sha512-OdEXQYCOldjqUEsuMKsZRj93Ht23QRlhIb8E/X0sbwZhme8eUw6g8q7AdxGJKakcBbv7+/PX0Gc2btf7Ru8cZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {% block style %}
     {% endblock style %}
@@ -20,32 +21,44 @@
 
 
 <body class ='body'>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top mynav">
-      <a class="navbar-brand" href="{% url 'home'%}">
-        <img src="{% static 'img/logo-votepolicy.png' %}" width="15%" alt="logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active" >
-            <a class="nav-link" href="{% url 'home'%}">Vote!</a>
+    <nav class="nav-container">
+      <div class="nav-brand">
+        <a href="{% url 'home'%}">
+          <img class="nav-brand-img" src="{% static 'img/logo-votepolicy.png' %}" alt="logo">
+        </a>
+        <img class="icon-burger" id="dropdown-burger" src="{% static 'img/icon-burger.svg' %}" alt="logo">
+      </div>
+    
+      <div class="nav-group" id="nav-group">
+        <ul class="nav-links">
+          <li>
+            <a class="nav-item" href="">Vote!</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Policy
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Ekonomi</a>
-              <a class="dropdown-item" href="#">Hukum</a>
-              <a class="dropdown-item" href="#">Lingkungan</a>
-              <a class="dropdown-item" href="#">Pendidikan</a>
-              <a class="dropdown-item" href="#">Sosial Politik</a>
-              <a class="dropdown-item" href="#">Lainnya</a>
+          <li class="dropdown-container">
+            <button class="nav-dropdown nav-item"> Policy <div class="dropdown-icon"></div> </button>
+            <div class="dropdown-items" id="policy-dropdown">
+              <a class="dropwdown-item" href="#">Hukum</a>
+              <a class="dropwdown-item" href="#">Ekonomi</a>
+              <a class="dropwdown-item" href="#">Lingkungan</a>
+              <a class="dropwdown-item" href="#">Sosial Politik</a>
+              <a class="dropwdown-item" href="#">Pendidikan</a>
+              <a class="dropwdown-item" href="#">Lainnya</a>
             </div>
           </li>
+          <li>
+            <a class="nav-item" href="#">Kampanye Saya</a>
+          </li>
         </ul>
+    
+        <div class="nav-profile">
+          <button class="nav-dropdown nav-item"> <img class="icon-user" src="{% static 'img/icon-user.svg' %}" alt="logo">
+            Masuk/Daftar <div class="dropdown-icon"></div> </button>
+          <div class="dropdown-items" id="profile-dropdown">
+            <a class="dropwdown-item" href="#">Masuk</a>
+            <a class="dropwdown-item" href="#">Daftar</a>
+          </div>
+        </div>
+    
       </div>
     </nav>
 
@@ -77,6 +90,8 @@
         <small>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</small>
       </div>
     </div>
+  
+  <script src="{% static 'js/navbar.js' %}" ></script>
 
 </body>
 {% block script %}
