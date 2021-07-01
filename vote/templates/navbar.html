@@ -34,15 +34,15 @@
           <li>
             <a class="nav-item" href="">Vote!</a>
           </li>
-          <li class="dropdown-container">
+          <li class="dropdown-container" tabindex="-1">
             <button class="nav-dropdown nav-item"> Policy <div class="dropdown-icon"></div> </button>
             <div class="dropdown-items" id="policy-dropdown">
-              <a class="dropwdown-item" href="#">Hukum</a>
-              <a class="dropwdown-item" href="#">Ekonomi</a>
-              <a class="dropwdown-item" href="#">Lingkungan</a>
-              <a class="dropwdown-item" href="#">Sosial Politik</a>
-              <a class="dropwdown-item" href="#">Pendidikan</a>
-              <a class="dropwdown-item" href="#">Lainnya</a>
+              <a class="dropdown-item" href="#">Hukum</a>
+              <a class="dropdown-item" href="#">Ekonomi</a>
+              <a class="dropdown-item" href="#">Lingkungan</a>
+              <a class="dropdown-item" href="#">Sosial Politik</a>
+              <a class="dropdown-item" href="#">Pendidikan</a>
+              <a class="dropdown-item" href="#">Lainnya</a>
             </div>
           </li>
           <li>
@@ -50,13 +50,24 @@
           </li>
         </ul>
     
-        <div class="nav-profile">
+        <div class="nav-profile" tabindex="-1">
+          {% if user.is_authenticated %}
           <button class="nav-dropdown nav-item"> <img class="icon-user" src="{% static 'img/icon-user.svg' %}" alt="logo">
-            Masuk/Daftar <div class="dropdown-icon"></div> </button>
-          <div class="dropdown-items" id="profile-dropdown">
-            <a class="dropwdown-item" href="#">Masuk</a>
-            <a class="dropwdown-item" href="#">Daftar</a>
+            Akun Saya
+            <div class="dropdown-icon"></div>
+          </button>
+            <div class="dropdown-items profile" id="profile-dropdown">
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            </div>
+          {% else %}
+          <button class="nav-dropdown nav-item"> <img class="icon-user" src="{% static 'img/icon-user.svg' %}" alt="logo">
+            Masuk/Daftar <div class="dropdown-icon"></div> 
+          </button>
+          <div class="dropdown-items profile">
+            <a class="dropdown-item" href="{% url 'login' %}">Masuk</a>
+            <a class="dropdown-item" href="{% url 'register' %}">Daftar</a>
           </div>
+          {% endif %}
         </div>
     
       </div>
