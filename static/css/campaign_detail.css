@@ -26,8 +26,8 @@
 .page-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    max-width: 45em;
+    align-items: center;
+    padding: 0 15vw;
 }
 
 .campaign-img-container {
@@ -42,6 +42,8 @@
 .campaign-title {
     width: 100%;
     text-align: center;
+    font-weight: bold;
+    margin-bottom: 1em;
 }
 
 .campaign-img {
@@ -58,6 +60,7 @@
     align-items: center;
     height: fit-content;
     margin-top: 1em;
+    margin-right: auto;
 }
 
 .campaign-description {
@@ -65,3 +68,198 @@
     width: 100%;
     text-align: justify;
 }
+
+.vote-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 2em;
+    border: 1.5px solid black;
+    border-radius: 8px;
+}
+
+.form-header, .section-header {
+    margin: 1em 0;
+    text-align: center;
+}
+
+.form-header {
+    font-size: 1.4em;
+}
+
+.section-header {
+    font-weight: bold;
+    margin-bottom: 1.5em;
+}
+
+.section-header::after {
+    padding: 0 1em;
+}
+
+.form-header::after, .section-header::after {
+    content: "";
+    background: #8D0507;
+    float: left;
+    width: 100%;
+    height: 8px;
+    border-radius: 1000px;
+    margin-top: 5px;
+}
+
+.input-text {
+    border-radius: 5px;
+    border: #7c7c7c 1px solid;
+    width: 100%;
+    padding: 0.6em;
+}
+
+.input-alert {
+    color: red;
+    margin-left: auto;
+}
+
+.vote-buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 2em;
+    padding-top: 1em;
+}
+
+.vote-hasil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.vote-bar {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    border-radius: 1000px;
+    background: #8D0507;
+    color: white;
+}
+
+.vote-bar-tidak-setuju {
+    border-radius: 1000px 0px 0px 1000px;
+    background: #C51416;
+    padding: 0.3em;
+    text-align: center;
+}
+
+.vote-bar-setuju {
+    text-align: center;
+    padding: 0.3em;
+    flex-grow: 1;
+}
+
+.vote-bar-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1em;
+}
+
+.vote-comment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+    row-gap: 1em;
+    margin-top: 2em;
+}
+
+.vote-comment-form button {
+    margin-left: auto;
+}
+
+.vote-comment-form .form-header {
+    width: max-content;
+    font-size: 1.75rem;
+}
+
+.vote-comment-form .form-header::after {
+    padding: 0 1em;
+}
+
+.vote-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 3em 5em 6em 5em;
+    row-gap: 2em;
+    background: #F7E5E5;
+    border: 0.5px solid #000000;
+    border-radius: 10px;
+    margin: 2em 0;
+}
+
+.vote-comment {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 100%;
+    padding: 1em 2em;
+    border-radius: 10px;
+}
+
+.comment-text {
+    text-align: justify;
+}
+
+.comment-poster {
+    font-weight: 700;
+}
+
+
+.carousel-button {
+    height: 1.5em;
+    width: 1.5em;
+    border:  solid #8D0507;
+    border-width:0 0 5px 5px ;
+    background: none;
+    border-radius: 0;
+}
+
+.right {
+    transform: rotate(225deg);
+    right: 0;
+}
+
+.left {
+    transform: rotate(45deg);
+    left: 0;
+}
+
+.carousel-button:hover {
+    border: solid #BA111B;
+    border-width:0 0 5px 5px ;
+}
+
+.carousel-button:focus {
+    outline: none;
+}
+
+.carousel-campaign-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+}
+
+.carousel-campaign-item:hover {
+    text-decoration: none;
+    color :#8D0507
+}
+
+.carousel-campaign-img {
+    object-fit: cover;
+    height: 8em;
+    width: 8em;
+    border-radius: 50%;
+    margin-bottom: 1em;
+}
+

@@ -242,6 +242,60 @@ a:hover {
     padding-top: 4%;
 }
 
+
+.button-fill, .button-outline {
+	border-radius:6px;
+	cursor:pointer;
+	padding:0.5em 2em;
+    text-decoration:none;
+    margin: 1em 0 0 0;
+    text-align: center;
+    font-weight: 800;
+    border: 1.5px solid #8D0507;
+}
+
+.button-fill {
+	color:#ffffff;
+	background-color: #8D0507;
+}
+
+.button-outline {
+    background:#ffffff;
+	color: #8D0507;
+}
+
+.button-fill:hover {
+	color:#ffffff;
+    background-color:#BA111B;
+    text-decoration:none;
+}
+
+.button-outline:hover {
+	color:#ffffff;
+	background-color: #d64447;
+    border: 1.5px solid #d64447;
+}
+
+
+.button-fill:active, .button-outline:active {
+	position:relative;
+	top:1px;
+}
+
+.button-fill:focus, .button-outline:focus {
+    outline: none;
+}
+
+.invert {
+    background-color:#ffffff;
+	color: #8D0507;
+}
+
+.invert:hover {
+    background-color:#ffffff;
+    color:#BA111B;
+}
+
 .page-footer {
     display: flex;
     flex-direction: column;

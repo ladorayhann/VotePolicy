@@ -86,3 +86,13 @@ def campaign_home(request):
 
 def campaign_detail(request):
     return render(request, 'campaign_detail.html')
+
+def campaign_search(request):
+    return render(request, 'campaign_search.html')
+
+def vote(request):
+    return render(request, 'vote.html')
+
+def vote_detail(request):
+    messages.success(request, "test")
+    return render(request, 'vote_detail.html')

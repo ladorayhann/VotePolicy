@@ -1,0 +1,171 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<link href="{% static 'css/campaign_detail.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block body %}
+    <div class="page-container">
+        <div class="page-header">
+            <img class="page-header-img" src="{% static 'img/bg-suara.png' %}" alt="">
+        </div>
+        <div class="page-content">
+            <h1 class="campaign-title">Lorem ipsum dolor sit amet</h1>
+            <div class="campaign-img-container">
+                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+            </div>
+
+            <div class="campaign-category"> Ekonomi </div>
+
+            <p class="campaign-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id id libero aenean diam vestibulum. Nulla vitae nibh
+                eleifend nulla proin tincidunt. In diam ac nam orci eu. Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci
+                commodo. Erat faucibus quis integer mauris a. Dolor sodales ac gravida porta in posuere. Donec sed ornare pulvinar
+                aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
+                nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
+                Pellentesque viverra at justo at ut amet velit, pretium nisl. Sit eu suscipit amet, sit tristique volutpat dignissim
+                tortor id. Risus posuere tincidunt pharetra, mauris faucibus venenatis elementum. Potenti malesuada dignissim elit
+                tellus feugiat vulputate in et viverra. Egestas elit viverra pharetra a posuere consectetur sed. Justo feugiat id quis
+                consectetur. Feugiat quam convallis pretium enim maecenas id. Tempor, tellus sollicitudin est lacus quisque mattis.
+                Sagittis, nunc, blandit aliquam eget tincidunt in in sit hac. Aenean imperdiet morbi amet, in quisque condimentum at
+                enim, tortor. Ac eget odio quisque quis. Fermentum, euismod magna blandit lectus rhoncus luctus quis urna risus. Arcu
+                nec condimentum a enim non in. Eleifend at nunc odio varius.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id id libero aenean diam vestibulum. Nulla vitae nibh
+                eleifend nulla proin tincidunt. In diam ac nam orci eu. Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci
+                commodo. Erat faucibus quis integer mauris a. Dolor sodales ac gravida porta in posuere. Donec sed ornare pulvinar
+                aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
+                nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
+            </p> 
+
+            <div class="vote-hasil">
+                <h3>Hasil Vote</h3>
+                <div class="vote-bar">
+                    <!-- dari backend tinggal isi persentase vote tidak setuju di width nya -->
+                    <div class="vote-bar-tidak-setuju" style="width: 43%;">43%</div>
+                    <div class="vote-bar-setuju">57%</div>
+                </div>
+                <div class="vote-bar-info">
+                    <span>TIDAK SETUJU</span>
+                    <span>SETUJU</span>
+                </div>
+            </div>
+
+            <form class="vote-comment-form" action="">
+                <h3 class="form-header">Komentar</h3>
+                <input class="input-text" type="text">
+                <textarea class="input-text" placeholder="Berikan komentar anda"></textarea>
+                <button class="button-fill">KIRIM</button>
+            </form>
+
+            <div class="vote-comments">
+                <div class="vote-comment">
+                    <h4 class="comment-poster">Lado Rayhan</h4>
+                    <p class="comment-text">
+                        Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a. Dolor
+                        sodales ac elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a.
+                    </p>
+                </div>
+
+                <div class="vote-comment">
+                    <h4 class="comment-poster">Lado Rayhan</h4>
+                    <p class="comment-text">
+                        Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a. Dolor
+                        sodales ac elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="section-header">Kampanye Terkait</h2>
+
+            <div id="card-slider" class="splide campaign-carousel">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <a class="carousel-campaign-item" href="#">
+                                <img class="carousel-campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <h4 class="carousel-campaign-title">Lorem Ipsum</h4>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a class="carousel-campaign-item" href="#">
+                                <img class="carousel-campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <h4 class="carousel-campaign-title">Lorem Ipsum</h4>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a class="carousel-campaign-item" href="#">
+                                <img class="carousel-campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <h4 class="carousel-campaign-title">Lorem Ipsum</h4>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a class="carousel-campaign-item" href="#">
+                                <img class="carousel-campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+                                <h4 class="carousel-campaign-title">Lorem Ipsum</h4>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="splide__arrows">
+                    <button class="splide__arrow splide__arrow--prev carousel-button left"></button>
+                    <button class="splide__arrow splide__arrow--next carousel-button right"></button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
+
+
+    {% if messages %}
+        {% for m in messages %}
+            {% if 'failed' in m.tags %}
+                <script type="text/javascript">
+                  Swal.fire({
+                      "title": "Gagal",
+                      "text": "{{m}}",
+                      "icon": "error"
+
+                  })
+                  
+                </script>
+            {% else %}
+            <script type="text/javascript">
+                Swal.fire({
+                    "title": "Suaramu sudah masuk!",
+                    "html":
+
+                    '<div class="alert-box" style="display: flex; flex-direction: column; align-items: center; padding: 1em;">' +
+                        '<h4>Sebarkan kebijakan ini ke temanmu!</h4>' +
+                        '<div class="social-media-group" style="display: flex; justify-content: space-around; width: 100%;">'  +
+                            '<a href="#"> <img src="/static/img/fb-circle.png" alt="fb"> </a>' +
+                        ' <a href="#"><img src="/static/img/twt-circle.png" alt="twt"></a>' +
+                        ' <a href="#"><img src="/static/img/ig-circle.png" alt="ig"></a>' +
+                        '</div>' +
+                    '</div>',
+                    "showCloseButton": true,
+                    "showConfirmButton": false,
+                })
+                
+            </script>
+                
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% endblock body %}
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script src="{% static 'js/vote.js' %}" ></script>
+{% endblock script %}

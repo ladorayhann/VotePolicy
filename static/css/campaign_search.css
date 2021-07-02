@@ -2,9 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
     padding-bottom: 2em;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
 }
 
 .page-header {
@@ -13,10 +20,10 @@
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, #8D0507 0%, #BA111B 100%);
-    mix-blend-mode: multiply;
     background: url("/static/img/bg-default.png") no-repeat;
+    mix-blend-mode: multiply;
     background-size: cover;
-    padding: 12em 0 6em 0;
+    padding:9em 0 3em 0;
     width: 100%;
     color: #ffffff;
     font-weight: bold;
@@ -30,6 +37,105 @@
     color: #ffffff;
     font-weight: bold;
 }
+
+.search-group {
+    background: white;
+    display: flex;
+    align-items: center;
+    min-width: 35em;
+    padding: 0.5em 0.7em;
+    border-radius: 1000px;
+    column-gap: 0.5em;
+    margin-top: 1em;
+}
+
+.search-group button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.search-group button:focus {
+    outline: none;
+}
+
+.search-icon {
+    max-height: 1em;
+    max-width: 1em;
+}
+
+.search-input {
+    background: transparent;
+    width: 100%;
+    border: none;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4em;
+    border: 1.8px solid black;
+    border-radius: 8px;
+    padding: 0.5em 1.2em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
+ }
+ 
+.input-img {
+    max-height: 2.1em;
+    max-width: 2.1em;
+}
+
+.input-desc {
+    font-size: 1.3em;
+}
+
+/* HIDE RADIO */
+.input-radio { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+/* IMAGE STYLES */
+.input-radio + .input-img  + .input-desc {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+.radio-item.selected {
+    background: #8D0507;
+    border: 1.8px solid #8D0507;
+}
+
+.input-radio:checked + .input-img + .input-desc{
+    color: white;
+}
+
+.input-radio:checked + .input-img path, [type=radio]:checked + .input-img ellipse  {
+    fill: #ffffff;
+    stroke: #ffffff;
+}
+
+.input-radio[value = hukum]:checked + .input-img path {
+    stroke: #ffffff;
+    fill: #8D0507;
+}
+
+.radio-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    column-gap: 3em;
+    row-gap: 1em;
+    margin-top: 2em;
+}
+
 
 .section-header {
     font-weight: bolder;
@@ -46,20 +152,18 @@
     margin-top: 5px;
 }
 
-.page-content {
+.campaign-items {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    /* padding: 0 10em; */
-    overflow: hidden;
+    row-gap: 3em;
+    padding-bottom: 1em;
 }
 
 .campaign-item {
     display: grid;
     grid-template-areas: 
     "title title title"
-    "desc desc img"
+    "desc img img"
     "button button button";
     grid-auto-flow: row;
     column-gap: 1em;
@@ -67,9 +171,9 @@
     border: 0.5px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    padding: 2em;
+    max-width: 50em;
+    padding: 2em 3em;
     margin: 0 1em;
-    overflow: hidden;
 }
 
 .campaign-title {
@@ -82,17 +186,17 @@
     grid-area: desc;
     font-size: smaller;
     text-align: justify;
-    line-height: 1.15em;
-    -webkit-line-clamp: 7;
-    max-height: 8.05em;
+    line-height: 1.4em;
+    -webkit-line-clamp: 8;
+    max-height: 11.2em;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
 .campaign-img {
     grid-area: img;
-    width: 7em;
-    height: 7em;
+    max-height: 10em;
+    object-fit: cover;
 }
 
 .vote {
@@ -108,9 +212,6 @@
     margin: 1em 0 0 0;
     text-align: center;
     font-weight: 800;
-    /* position: absolute;
-    bottom: 40%;
-    left: 50%; */
 }
 
 .button-fill {
@@ -142,84 +243,3 @@
     background-color:#ffffff;
     color:#BA111B;
 }
-
-/* .carousel-buttons {
-    display: flex;
-    justify-content: space-between;
-    z-index: 2;
-    width: 100%;
-    position: relative;
-    top: -12.5em;
-} */
-
-.carousel-button {
-    height: 1.5em;
-    width: 1.5em;
-    border:  solid #8D0507;
-    border-width:0 0 5px 5px ;
-    background: none;
-    border-radius: 0;
-}
-
-.right {
-    transform: rotate(225deg);
-    right: 0;
-}
-
-.left {
-    transform: rotate(45deg);
-    left: 0;
-}
-
-.carousel-button:hover {
-    border: solid #BA111B;
-    border-width:0 0 5px 5px ;
-}
-
-.carousel-button:focus {
-    outline: none;
-}
-
-.kebijakan-list {
-    padding: 0 4em;
-}
-
-.kebijakan-item {
-    display: grid;
-    grid-template-areas: 
-    "title category"
-    "desc desc";
-    grid-template-columns: auto 1fr;
-    justify-items: baseline;
-    align-items: center;
-    column-gap: 1em;
-
-    background: linear-gradient(180deg, #982729 0%, rgba(161, 58, 60, 0.9892) 0.01%, rgba(231, 202, 202, 0.908182) 70.83%, rgba(242, 227, 228, 0.952455) 83.86%, #FFFFFF 100%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    padding: 2em;
-    max-width: 65em;
-    margin-bottom: 3em;
-}
-
-.kebijakan-title {
-    grid-area: title;
-    font-weight: bold;
-}
-
-.kebijakan-description {
-    grid-area: desc;
-    text-align: justify;
-    max-height: 12.5em;
-}
-
-.kebijakan-category {
-    grid-area: category;
-    background: #DCB6B7;
-    border-radius: 9999px;
-    padding: 0.1em 1em;
-    display: flex;
-    align-items: center;
-    height: fit-content;
-}
-
