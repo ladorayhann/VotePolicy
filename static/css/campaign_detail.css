@@ -250,6 +250,16 @@
     color: black;
 }
 
+.carousel-campaign-title {
+    max-width: 80%;
+    text-overflow: ellipsis;
+    overflow-wrap:break-word;
+    text-align: center;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; 
+}
+
 .carousel-campaign-item:hover {
     text-decoration: none;
     color :#8D0507

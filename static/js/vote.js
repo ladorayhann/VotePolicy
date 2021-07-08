@@ -1,6 +1,5 @@
 document.addEventListener( 'DOMContentLoaded', function () {
 	new Splide( '#card-slider', {
-		type: 'loop',
 		perPage    : 3,
 		perMove : 1,
 		width: '70em',
