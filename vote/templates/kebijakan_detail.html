@@ -1,0 +1,71 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'css/campaign_detail.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block body %}
+    <div class="page-container">
+        <div class="page-header">
+            <img class="page-header-img" src="{% static 'img/bg-suara.png' %}" alt="">
+        </div>
+        <div class="page-content">
+            <ul class="breadcrumb">
+                <li><a href="#" class="breadcrumb-link" >Ekonomi</a></li>
+                <li><a href="#" class="breadcrumb-link current" >Lorem ipsum dolor sit amet</a></li>
+            </ul>
+            <div class=""></div>
+            <h1 class="campaign-title">Lorem ipsum dolor sit amet</h1>
+            <div class="campaign-img-container">
+                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
+            </div>
+
+            <div class="campaign-category"> Ekonomi </div>
+
+            <p class="campaign-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id id libero aenean diam vestibulum. Nulla vitae nibh
+                eleifend nulla proin tincidunt. In diam ac nam orci eu. Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci
+                commodo. Erat faucibus quis integer mauris a. Dolor sodales ac gravida porta in posuere. Donec sed ornare pulvinar
+                aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
+                nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
+                Pellentesque viverra at justo at ut amet velit, pretium nisl. Sit eu suscipit amet, sit tristique volutpat dignissim
+                tortor id. Risus posuere tincidunt pharetra, mauris faucibus venenatis elementum. Potenti malesuada dignissim elit
+                tellus feugiat vulputate in et viverra. Egestas elit viverra pharetra a posuere consectetur sed. Justo feugiat id quis
+                consectetur. Feugiat quam convallis pretium enim maecenas id. Tempor, tellus sollicitudin est lacus quisque mattis.
+                Sagittis, nunc, blandit aliquam eget tincidunt in in sit hac. Aenean imperdiet morbi amet, in quisque condimentum at
+                enim, tortor. Ac eget odio quisque quis. Fermentum, euismod magna blandit lectus rhoncus luctus quis urna risus. Arcu
+                nec condimentum a enim non in. Eleifend at nunc odio varius.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id id libero aenean diam vestibulum. Nulla vitae nibh
+                eleifend nulla proin tincidunt. In diam ac nam orci eu. Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci
+                commodo. Erat faucibus quis integer mauris a. Dolor sodales ac gravida porta in posuere. Donec sed ornare pulvinar
+                aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
+                nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
+            </p> 
+
+            <div class="kebijakan-socials">
+                <a class="kebijakan-social" href="">
+                    <img src="{% static 'img/icon-ig.svg' %}" alt="">
+                    <span>Lorem ipsum dolor sit</span>
+                </a>
+                <a class="kebijakan-social" href="">
+                    <img src="{% static 'img/icon-yt.svg' %}" alt="">
+                    <span>Lorem ipsum dolor sit</span>
+                </a>
+                <a class="kebijakan-social" href="">
+                    <img src="{% static 'img/icon-spotify.svg' %}" alt="">
+                    <span>Lorem ipsum dolor sit</span>
+                </a>
+            </div>
+
+            <form class="vote-comment-form" action="">
+                <h2 class="section-header">Komentar</h2>
+                <input class="input-text" type="text">
+                <textarea class="input-text" placeholder="Berikan komentar anda"></textarea>
+                <button class="button-fill">KIRIM</button>
+            </form>
+        </div>
+        
+    </div>
+
+{% endblock body %}

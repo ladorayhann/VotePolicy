@@ -96,3 +96,15 @@ def vote(request):
 def vote_detail(request):
     messages.success(request, "test")
     return render(request, 'vote_detail.html')
+
+def kebijakan_search(request):
+    return render(request, 'kebijakan_search.html')
+
+def kebijakan_detail(request):
+    return render(request, 'kebijakan_detail.html')
+
+def kebijakan_add(request):
+    if request.method == "POST":
+        print("====================FIRED======================")
+        messages.success(request, "test")
+    return render(request, 'kebijakan_add.html')

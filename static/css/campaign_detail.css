@@ -78,17 +78,18 @@
 }
 
 .form-header, .section-header {
-    margin: 1em 0;
     text-align: center;
 }
 
 .form-header {
     font-size: 1.4em;
+    margin: 1em 0;
 }
 
 .section-header {
     font-weight: bold;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
+    padding: 0;
 }
 
 .section-header::after {
@@ -271,5 +272,53 @@
     width: 8em;
     border-radius: 50%;
     margin-bottom: 1em;
+}
+
+.breadcrumb {
+    display: flex;
+    background: transparent;
+    margin-right: auto;
+    padding: 0em;
+}
+
+.breadcrumb li+li::before {
+    content: ">";
+}
+
+.breadcrumb-link {
+    padding: 0.5em;
+}
+
+.breadcrumb-link.current {
+    text-decoration: underline;
+    color: #8D0507;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: black;
+}
+
+.kebijakan-socials {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    margin-right: auto;
+    
+}
+
+.kebijakan-social {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.kebijakan-social img {
+    width: 2.5em;
+}
+
+.kebijakan-social span {
+    color: black;
+    font-size: 1.1rem;
 }
 

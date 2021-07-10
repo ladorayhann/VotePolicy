@@ -1,0 +1,125 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'css/campaign_search.css' %}" rel="stylesheet">
+<script src="{% static 'js/svg-inject.min.js' %}"></script>
+{% endblock style %}
+
+{% block body %}
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Telusuri Kebijakan</h1>
+            <form class="search-group">
+                <button type="submit"><img class="search-icon" src="{% static 'img/icon-search.svg' %}" alt="search"></button>
+                <input class="search-input" type="text">
+            </form>
+        </div>
+        <div class="page-content">
+            <div class="radio-inputs">
+                <label class="radio-item">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
+                    <img class="input-img" src="{% static 'img/logo-ekonomi.svg' %}" alt="ekonomi" onload="SVGInject(this)">
+                    <span class="input-desc">Ekonomi</span>
+                </label>
+                <label class="radio-item">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum">
+                    <img class="input-img" src="{% static 'img/logo-hukum.svg' %}" alt="hukum" onload="SVGInject(this)">
+                    <span class="input-desc">Hukum</span>
+                </label>
+                <label class="radio-item">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan">
+                    <img class="input-img" src="{% static 'img/logo-lingkungan.svg' %}" alt="lingkungan" onload="SVGInject(this)">
+                    <span class="input-desc">Lingkungan</span>
+                </label>
+                <label class="radio-item">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan">
+                    <img class="input-img" src="{% static 'img/logo-pendidikan.svg' %}" alt="pendidikan" onload="SVGInject(this)">
+                    <span class="input-desc">Pendidikan</span>
+                </label>
+                <label class="radio-item">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol">
+                    <img class="input-img" src="{% static 'img/logo-sospol.svg' %}" alt="sospol" onload="SVGInject(this)">
+                    <span class="input-desc">Sosial Politik</span>
+                </label>
+                <label class="radio-item">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="others">
+                    <img class="input-img" src="{% static 'img/logo-others.svg' %}" alt="others" onload="SVGInject(this)">
+                    <span class="input-desc">Lainnya</span>
+                </label>
+            </div>
+
+            <h1 class="section-header">Kebijakan-kebijakan Ekonomi</h1>
+            
+            <div class="kebijakan-list">
+
+                <div class="kebijakan-item">
+                    <div class="kebijakan-content">
+                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
+                        <p class="kebijakan-description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
+                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
+                        </p>
+                    </div>
+                    <div class="kebijakan-socials">
+                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
+                    </div>
+                </div>
+
+                <div class="kebijakan-item">
+                    <div class="kebijakan-content">
+                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
+                        <p class="kebijakan-description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
+                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
+                        </p>
+                    </div>
+                    <div class="kebijakan-socials">
+                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
+                    </div>
+                </div>
+
+                <div class="kebijakan-item">
+                    <div class="kebijakan-content">
+                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
+                        <p class="kebijakan-description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
+                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
+                        </p>
+                    </div>
+                    <div class="kebijakan-socials">
+                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
+                    </div>
+                </div>
+
+                <div class="kebijakan-item">
+                    <div class="kebijakan-content">
+                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
+                        <p class="kebijakan-description">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
+                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
+                        </p>
+                    </div>
+                    <div class="kebijakan-socials">
+                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
+                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+    </div>
+
+{% endblock body %}
+{% block script %}
+<script src="{% static 'js/campaign_search.js' %}" ></script>
+{% endblock script %}
