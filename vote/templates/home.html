@@ -3,6 +3,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<script src="{% static 'js/svg-inject.min.js' %}"></script>
 <link href="{% static 'css/home.css' %}" rel="stylesheet">
 {% endblock style %}
 
@@ -83,7 +84,7 @@
             <div class="kebijakan-list">
 
                 <div class="kebijakan-item">
-                    <h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1>
+                    <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1></a>
                     <div class="kebijakan-category">ekonomi</div>
                     <p class="kebijakan-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
@@ -91,17 +92,33 @@
                         consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
                         mauris etiam maecenas et ... selanjutnya
                     </p>
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-ekonomi.svg' %}" alt="" onload="SVGInject(this)">
                 </div>
 
                 <div class="kebijakan-item">
-                    <h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1>
-                    <div class="kebijakan-category">ekonomi</div>
+                    <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1></a>
+                    <div class="kebijakan-category">lingkungan</div>
                     <p class="kebijakan-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
                         ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
                         consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
                         mauris etiam maecenas et ... selanjutnya
                     </p>
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-lingkungan.svg' %}" alt="" onload="SVGInject(this)">
+                </div>
+
+                <div class="kebijakan-item">
+                    <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1></a>
+                    <div class="kebijakan-category">hukum</div>
+                    <p class="kebijakan-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
+                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
+                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
+                        mauris etiam maecenas et ... selanjutnya
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem, sit deleniti consequatur recusandae facilis amet
+                        adipisci exercitationem molestiae quis necessitatibus, ipsum voluptatibus iusto quod! Totam a vel quasi iste sunt.
+                    </p>
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-hukum.svg' %}" alt="" onload="SVGInject(this)">
                 </div>
 
             </div>
