@@ -1,17 +1,45 @@
 stages:
-  - deploy
+  - test
+  - production
 
-Deployment:
-  image: ruby:2.4
-  stage: deploy
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: votepolicy
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+Testing:
+  image: python:latest
+  stage: test
+  artifacts:
+    paths:
+      - coverage.xml
   before_script:
-    - gem install dpl
-    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    - apt-get update -qy
+    - apt-get install -y bash netcat
+    - bash -c 'while ! nc -z postgres 5432; do echo "Waiting for db..." && sleep 1; done;'
+    - pip install -r requirements.txt
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - python manage.py collectstatic --no-input
+    - python manage.py runserver 8000 &
+  when: on_success
   script:
-    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
-    - export HEROKU_API_KEY=$HEROKU_APIKEY
-  environment:
-    name: production
-    url: $HEROKU_APP_HOST
+    - coverage run manage.py test
+    - coverage xml
+    - coverage report -m
+
+Production:
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  type: deploy
+  stage: production
+  image: ruby:latest
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
   only:
     - master
