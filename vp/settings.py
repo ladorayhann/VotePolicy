@@ -15,6 +15,8 @@ import os
 import dj_database_url
 from dotenv import dotenv_values
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -88,6 +90,13 @@ if DB_PASS:
 else:
     DB_PASSWORD = config['POSTGRES_PASS']
 
+DB_PASS = config['POSTGRES_PASS'] == None
+DB_PASSWORD = ''
+if DB_PASS:
+    DB_PASSWORD = os.getenv('POSTGRES_PASS')
+else:
+    DB_PASSWORD = config['POSTGRES_PASS']
+
 
 DATABASES = {
     'default': {
@@ -103,6 +112,8 @@ DATABASES = {
 DB_URL = os.getenv('DATABASE_URL') != None
 if DB_URL:
     DATABASES['default'] = dj_database_url.config()
+
+
 
 
 # Password validation
