@@ -17,6 +17,7 @@ Testing:
     paths:
       - coverage.xml
   before_script:
+    - export DATABASE_URL=postgres://postgres:postgres@localhost:5432/votepolicy
     - apt-get update -qy
     - apt-get install -y bash netcat
     - bash -c 'while ! nc -z postgres 5432; do echo "Waiting for db..." && sleep 1; done;'
