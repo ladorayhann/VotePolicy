@@ -11,11 +11,12 @@ variables:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
 
-test:
+Testing:
+    image: python:latest
+    stage: test
     script:
     - export DATABASE_URL=postgres://postgres:@localhost:5432/votepolicy
     - apt-get update -qy
-    - apt-get install -y python-dev python-pip
     - pip install -r requirements.txt
     - python manage.py makemigrations
     - python manage.py migrate
