@@ -55,7 +55,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# ignore staticfiles for whitenoise
 staticfiles/
 
 # ignore virtual environment
