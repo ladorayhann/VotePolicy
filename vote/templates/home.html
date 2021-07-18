@@ -11,7 +11,9 @@ gi{% extends 'navbar.html' %}
     <div class="page-container">
         <div class="page-header">
             <img class="page-header-img" src="{% static 'img/title-demokrasi.svg' %}" alt="">
+            {% if user.is_authenticated %}
             <a class="button-fill invert" href="#">Kampanyekan Suaramu</a>
+            {% endif %}
         </div>
         <div class="page-content">
 

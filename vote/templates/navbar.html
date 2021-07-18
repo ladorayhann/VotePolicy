@@ -46,9 +46,11 @@
               <a class="dropdown-item" href="#">Lainnya</a>
             </div>
           </li>
+          {% if user.is_authenticated %}
           <li>
             <a class="nav-item" href="#">Kampanye Saya</a>
           </li>
+          {% endif %}
         </ul>
     
         <div class="nav-profile" tabindex="-1">
