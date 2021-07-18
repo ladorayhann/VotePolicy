@@ -17,7 +17,7 @@ Testing:
     paths:
       - coverage.xml
   before_script:
-    - export DATABASE_URL=postgres://postgres:postgres@localhost:5432/votepolicy
+    - export DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$localhost:5432/$POSTGRES_DB
     - apt-get update -qy
     - apt-get install -y bash netcat
     - bash -c 'while ! nc -z postgres 5432; do echo "Waiting for db..." && sleep 1; done;'
@@ -28,6 +28,7 @@ Testing:
     - python manage.py runserver 8000 &
   when: on_success
   script:
+    - export DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$localhost:5432/$POSTGRES_DB
     - coverage run manage.py test
     - coverage xml
     - coverage report -m
