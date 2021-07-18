@@ -15,7 +15,7 @@ Testing:
     image: python:latest
     stage: test
     script:
-    - export DATABASE_URL=postgres://postgres:@localhost:5432/votepolicy
+    - export DATABASE_URL=postgres://postgres:postgres@postgres:5432/votepolicy
     - apt-get update -qy
     - pip install -r requirements.txt
     - python manage.py makemigrations
