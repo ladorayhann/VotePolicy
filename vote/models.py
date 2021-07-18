@@ -18,13 +18,15 @@ class StatusJapat(models.Model):
 
 class Japat(models.Model):
     user = models.ForeignKey(User, on_delete=models.RESTRICT)
-    statusJapat = models.OneToOneField(StatusJapat, null=True, on_delete=models.RESTRICT, blank=True)
-    Category = models.OneToOneField(Category, null=True, on_delete=models.RESTRICT, blank=True)
-    title = models.CharField(max_length=100, unique=True)
+    voters = models.IntegerField(null=True, blank=True, default=0)
+    statusJapat = models.ForeignKey(StatusJapat, null=True, on_delete=models.RESTRICT, blank=True)
+    category = models.ForeignKey(Category, null=True, on_delete=models.RESTRICT, blank=True)
+    title = models.CharField(max_length=100, unique=False)
     target = models.CharField(max_length=100, null=False, default="")
     content = models.TextField(null=False, default="")
     image = models.ImageField(null=True, blank=True)
     file1 = models.FileField(null=True, blank=True)
+    url = models.URLField(null=True, blank=True)
     created_time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -50,7 +52,7 @@ class Vote(models.Model):
         return f'Vote : {str(self.japat.title)}'
 
 class Policy(models.Model):
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=False)
     category = models.OneToOneField(Category, null=True,on_delete=models.RESTRICT)
     content = models.TextField(null=False)
     spotify = models.URLField(null=True, blank=True)
