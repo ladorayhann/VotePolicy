@@ -81,6 +81,12 @@ WSGI_APPLICATION = 'vp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DB_PASS = config['POSTGRES_PASS'] == None
+DB_PASSWORD = ''
+if DB_PASS:
+    DB_PASSWORD = os.getenv('POSTGRES_PASS')
+else:
+    DB_PASSWORD = config['POSTGRES_PASS']
 
 
 DATABASES = {
@@ -88,7 +94,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'votepolicy',
         'USER': 'postgres',
-        'PASSWORD': config['POSTGRES_PASS'],
+        'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
         'PORT': '5432'
     }
