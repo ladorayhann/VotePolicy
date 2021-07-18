@@ -1,7 +1,9 @@
+image: python:3.6.1
 stages:
   - test
   - production
-
+  
+  
 services:
   - postgres:latest
 
@@ -10,28 +12,15 @@ variables:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
 
-Testing:
-  image: python:latest
-  stage: test
-  artifacts:
-    paths:
-      - coverage.xml
-  before_script:
-    - export DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$localhost:5432/$POSTGRES_DB
+test:
+    script:
+    - export DATABASE_URL=postgres://postgres:@localhost:5432/votepolicy
     - apt-get update -qy
-    - apt-get install -y bash netcat
-    - bash -c 'while ! nc -z postgres 5432; do echo "Waiting for db..." && sleep 1; done;'
+    - apt-get install -y python-dev python-pip
     - pip install -r requirements.txt
     - python manage.py makemigrations
     - python manage.py migrate
-    - python manage.py collectstatic --no-input
-    - python manage.py runserver 8000 &
-  when: on_success
-  script:
-    - export DATABASE_URL=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$localhost:5432/$POSTGRES_DB
-    - coverage run manage.py test
-    - coverage xml
-    - coverage report -m
+    - python manage.py test
 
 Production:
   before_script:
