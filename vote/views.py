@@ -1,3 +1,4 @@
+from vote.models import Category, StatusJapat, Japat
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm, LoginForm
 from django.contrib.auth import authenticate
@@ -6,24 +7,22 @@ from django.contrib.auth import logout as auth_logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib import messages
+from .models import Japat
 
 # Create your views here.
 def home(request):
-    if 'logged_in' not in request.session:
-        return redirect('login')
-    return render(request, 'home.html')
+    japats = Japat.objects.all().order_by('-voters')[:5]
+    return render(request, 'home.html', {"japats":japats})
 
 @csrf_exempt
 def login(request):
-    if 'logged_in' in request.session:
-        return redirect('home')
-    else:
-        form = LoginForm()
-        if request.method == "POST":
-            form = LoginForm(request.POST)
-            if form.is_valid():
-                email = form.cleaned_data.get('email')
-                password = form.cleaned_data.get('password')
+    form = LoginForm()
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            try:
                 pengguna = User.objects.get(email=email)
                 username = pengguna.username
                 user = authenticate(request, username=username, password=password)
@@ -36,16 +35,17 @@ def login(request):
                 else:
                     messages.error(request, "Email/Password salah", extra_tags="failed")
                     return redirect('login')
-            messages.error(request, "Input yang Anda masukan salah", extra_tags="failed")
-            return redirect('login')
+            except:
+                messages.error(request, "Email/Password salah", extra_tags="failed")
+                return redirect('login')
+        messages.error(request, "Input yang Anda masukan salah", extra_tags="failed")
+        return redirect('login')
 
-        context = {'form':form}
-        return render(request, 'login.html', context)
+    context = {'form':form}
+    return render(request, 'login.html', context)
 
 @csrf_exempt    
 def register(request):
-    if 'logged_in' in request.session:
-        return redirect('home')
     form = CreateUserForm()
     if request.method == "POST":
         form = CreateUserForm(request.POST)
@@ -79,6 +79,42 @@ def logout(request):
 
 # progress
 def campaign_make(request):
+    if 'logged_in' not in request.session:
+        return redirect('login')
+    if request.method == 'POST':        
+        category = None
+        if request.POST['jenis_kampanye'] == 'lingkungan':
+            category = Category.objects.get(deskripsi='Lingkungan')
+        elif request.POST['jenis_kampanye'] == 'sospol':
+            category = Category.objects.get(deskripsi='Sosial Politik')
+        elif request.POST['jenis_kampanye'] == 'hukum':
+            category = Category.objects.get(deskripsi='Hukum')
+        elif request.POST['jenis_kampanye'] == 'ekonomi':
+            category = Category.objects.get(deskripsi='Ekonomi')
+        elif request.POST['jenis_kampanye'] == 'pendidikan':
+            category = Category.objects.get(deskripsi='Pendidikan')
+        elif request.POST['jenis_kampanye'] == 'others':
+            category = Category.objects.get(deskripsi='Lainnya')
+        
+
+        title = request.POST['title']
+        target = request.POST['target']
+        deskripsi = request.POST['deskripsi']
+        status = None
+        if 'file' in request.FILES:
+            files = request.FILES['file']
+        else:
+            files = None
+        try:
+            status = StatusJapat.objects.get(deskripsi="Pending")
+        except:
+            status = StatusJapat.objects.create(deskripsi="Pending")
+
+        japat = Japat.objects.create(user=request.user, statusJapat=status, category=category, title=title, content=deskripsi, target=target, file1=files)
+        japat.save()
+        messages.success(request, "Kebijakan akan dinilai oleh tim vote.policy,status akan di update paling lama 2x24 jam", extra_tags="success")
+        return redirect('campaign_make')
+
     return render(request, 'campaign_make.html')
 
 def campaign_home(request):

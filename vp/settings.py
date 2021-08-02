@@ -15,6 +15,8 @@ import os
 import dj_database_url
 from dotenv import dotenv_values
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,18 +84,37 @@ WSGI_APPLICATION = 'vp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DB_PASS = config['POSTGRES_PASS'] == None
+DB_PASSWORD = ''
+if DB_PASS:
+    DB_PASSWORD = os.getenv('POSTGRES_PASS')
+else:
+    DB_PASSWORD = config['POSTGRES_PASS']
+
+DB_PASS = config['POSTGRES_PASS'] == None
+DB_PASSWORD = ''
+if DB_PASS:
+    DB_PASSWORD = os.getenv('POSTGRES_PASS')
+else:
+    DB_PASSWORD = config['POSTGRES_PASS']
 
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'votepolicy',
         'USER': 'postgres',
-        'PASSWORD': config['POSTGRES_PASS'],
+        'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
         'PORT': '5432'
     }
 }
+
+DB_URL = os.getenv('DATABASE_URL') != None
+if DB_URL:
+    DATABASES['default'] = dj_database_url.config()
+
+
 
 
 # Password validation
@@ -129,3 +151,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

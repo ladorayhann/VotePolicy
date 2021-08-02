@@ -14,6 +14,7 @@ function showTab(n) {
 
     if (n == (tabs.length - 1)) {
       document.getElementById("next").innerHTML = "SUBMIT";
+      
     } else {
       document.getElementById("next").innerHTML = "LANJUT";
     }
@@ -27,6 +28,8 @@ function nextPrev(n) {
     if (n == 1 && !validateForm()) return false;
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
+
+
     // if you have reached the end of the form... :
     if (currentTab >= tabs.length) {
       //...the form gets submitted:

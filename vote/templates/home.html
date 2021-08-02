@@ -1,4 +1,4 @@
-{% extends 'navbar.html' %}
+gi{% extends 'navbar.html' %}
 {% load static %}
 
 {% block style %}
@@ -11,7 +11,9 @@
     <div class="page-container">
         <div class="page-header">
             <img class="page-header-img" src="{% static 'img/title-demokrasi.svg' %}" alt="">
+            {% if user.is_authenticated %}
             <a class="button-fill invert" href="#">Kampanyekan Suaramu</a>
+            {% endif %}
         </div>
         <div class="page-content">
 
@@ -20,56 +22,17 @@
             <div id="card-slider" class="splide campaign-carousel">
                 <div class="splide__track">
                     <ul class="splide__list">
-
+                      {% for japat in japats %}
                         <li class="splide__slide">
                             <div class="campaign-item">
-                                <h3 class="campaign-title">Lorem ipsum dolor sit amet conqusistador lorem ipsum dolor sit amet hubla hubla</h3>
+                                <h3 class="campaign-title">{{japat.title}}</h3>
                                 <p class="campaign-description">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                                    ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                                    consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                                    mauris etiam maecenas et ... selanjutnya
+                                    {{japat.content}}
                                 </p>
                                 <button class="button-fill vote">VOTE</button>
                             </div>
                         </li>
-
-                        <li class="splide__slide">
-                            <div class="campaign-item">
-                                <div class="campaign-content">
-                                    <h3 class="campaign-title">Lorem ipsum dolor sit amet</h3>
-                                    <p class="campaign-description">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia pariatur quae fugiat tenetur repudiandae suscipit
-                                    aspernatur sunt quibusdam, reprehenderit cupiditate, voluptatibus molestias commodi magnam nobis doloribus dolores!
-                                    Beatae, itaque tempore.
-                                    </p>
-                                </div>
-                                <div class="campaign-button">
-                                    <button class="button-fill vote">VOTE</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="splide__slide">
-                            <div class="campaign-item">
-                                <div class="campaign-content">
-                                    <h3 class="campaign-title">MEMPERTANGGUNGJAWABKAN</h3>
-                                    <p class="campaign-description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                                        mauris etiam maecenas et ... selanjutnya                                                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                                        mauris etiam maecenas et ... selanjutnya 
-                                    </p>
-                                </div>
-                                <div class="campaign-button">
-                                    <button class="button-fill vote">VOTE</button>
-                                </div>
-                            </div>
-                        </li>
-
+                        {% endfor %}
                     </ul>
                 </div>
 

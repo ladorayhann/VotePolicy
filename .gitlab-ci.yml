@@ -1,0 +1,36 @@
+stages:
+  - test
+  - production
+  
+  
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: votepolicy
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+
+Testing:
+    image: python:latest
+    stage: test
+    script:
+    - export DATABASE_URL=postgres://postgres:postgres@postgres:5432/votepolicy
+    - apt-get update -qy
+    - pip install -r requirements.txt
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - python manage.py test
+
+Production:
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+  type: deploy
+  stage: production
+  image: ruby:latest
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
+  only:
+    - master
