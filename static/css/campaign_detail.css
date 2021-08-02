@@ -69,12 +69,19 @@
     text-align: justify;
 }
 
+.campaign-document {
+    width: 90%;
+    border: 3px solid black;
+    margin: 1em 0;
+}
+
 .vote-form {
     display: flex;
     flex-direction: column;
     padding: 1em 2em;
     border: 1.5px solid black;
     border-radius: 8px;
+    margin: 2em 0;
 }
 
 .form-header, .section-header {
@@ -140,19 +147,25 @@
     border-radius: 1000px;
     background: #8D0507;
     color: white;
+    overflow: hidden;
 }
 
 .vote-bar-tidak-setuju {
-    border-radius: 1000px 0px 0px 1000px;
     background: #C51416;
     padding: 0.3em;
     text-align: center;
+    /* overflow: hidden; */
 }
 
 .vote-bar-setuju {
+    display: block;
+    padding: 0.3em 0;
     text-align: center;
-    padding: 0.3em;
+    overflow: hidden;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .vote-bar-info {

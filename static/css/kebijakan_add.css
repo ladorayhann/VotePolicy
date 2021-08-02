@@ -47,8 +47,14 @@
 
 .form-input {
     padding: 0.7em 1.2em;
-    background: #FEE0E1;
+    /* background: #FEE0E1; */
+    border: 1px solid #1D262C;
+    box-sizing: border-box;
     border-radius: 8px;
-    border: none;
     width: 100%;
+}
+
+.form-input:focus {
+    outline: none;
+    border: 1px solid #AD0D0F;
 }
