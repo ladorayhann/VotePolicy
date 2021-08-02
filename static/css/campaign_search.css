@@ -85,6 +85,16 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
     cursor: pointer;
  }
+
+ .radio-item:hover {
+     background: #BA111B;
+     color: #FFFFFF;
+     border: 1.8px solid #BA111B;
+ }
+
+ .input-radio:hover + .input-img path, .input-radio:hover + .input-img ellipse  {
+    fill: #ffffff;
+}
  
 .input-img {
     max-height: 2.1em;
@@ -120,13 +130,8 @@
 
 .input-radio:checked + .input-img path, [type=radio]:checked + .input-img ellipse  {
     fill: #ffffff;
-    stroke: #ffffff;
 }
 
-.input-radio[value = hukum]:checked + .input-img path {
-    stroke: #ffffff;
-    fill: #8D0507;
-}
 
 .radio-inputs {
     display: grid;
@@ -172,6 +177,7 @@
     border: 0.5px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    min-width: 50em;
     max-width: 50em;
     padding: 2em 3em;
     margin: 0 1em;
