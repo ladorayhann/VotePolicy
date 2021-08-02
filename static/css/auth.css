@@ -197,6 +197,6 @@ u:hover {
   color: #790507;
 }
 
-small {
+small.font-weight-bold {
   width: 100%;
 }

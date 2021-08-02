@@ -296,50 +296,10 @@ a:hover {
     color:#BA111B;
 }
 
-.page-footer {
+.footer {
     display: flex;
     flex-direction: column;
-    margin-top: 1em;
-}
-
-.footer-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em 3em 3em 3em;
-    background-color: #363333;
-    border: #363333;
-    color: #FFFFFF;
-    width:100%;
-    box-shadow: 0 -1px #363333;
-}
-
-.footer-curve {
-    width: 100%;
-}
-
-.footer-sitemap {
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 2em;
-}
-
-.footer-about {
-    margin-right: 2em;
-}
-
-.footer-links li a {
-    color: #FFFFFF;
-}
-
-.footer-links li {
-    list-style-type: none;
-}
-
-.footer-copyright {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border-top: 2px solid #FFFFFF;
-    padding-top: 2em;
+    padding: 2em;
+    background: #FAFAFA;
 }
