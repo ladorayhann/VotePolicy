@@ -11,13 +11,13 @@ gi{% extends 'navbar.html' %}
     <div class="page-container">
         <div class="page-header">
             <img class="page-header-img" src="{% static 'img/title-demokrasi.svg' %}" alt="">
-            {% if user.is_authenticated %}
-            <a class="button-fill invert" href="#">Kampanyekan Suaramu</a>
+            {% if user.is_authenticated and user.is_superuser == False %}
+            <a class="button-fill invert" href="{% url 'campaign_make' %}">Kampanyekan Suaramu</a>
             {% endif %}
         </div>
         <div class="page-content">
 
-            <h1 class="section-header">Kampanye Teropuler</h1>
+            <h1 class="section-header">Kampanye Terpopuler</h1>
 
             <div id="card-slider" class="splide campaign-carousel">
                 <div class="splide__track">
@@ -44,47 +44,19 @@ gi{% extends 'navbar.html' %}
                 </div>
             </div>
 
-            <h1 class="section-header">Kebijikan Teropuler</h1>
+            <h1 class="section-header">Kebijakan Terpopuler</h1>
 
             <div class="kebijakan-list">
-
+              {% for policy in policies %}
                 <div class="kebijakan-item">
-                    <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1></a>
+                    <a href="#"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
                     <div class="kebijakan-category">ekonomi</div>
                     <p class="kebijakan-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                        mauris etiam maecenas et ... selanjutnya
+                        {{policy.content}} ... selanjutnya
                     </p>
                     <img class="kebijakan-category-logo" src="{% static 'img/logo-ekonomi.svg' %}" alt="" onload="SVGInject(this)">
                 </div>
-
-                <div class="kebijakan-item">
-                    <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1></a>
-                    <div class="kebijakan-category">lingkungan</div>
-                    <p class="kebijakan-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                        mauris etiam maecenas et ... selanjutnya
-                    </p>
-                    <img class="kebijakan-category-logo" src="{% static 'img/logo-lingkungan.svg' %}" alt="" onload="SVGInject(this)">
-                </div>
-
-                <div class="kebijakan-item">
-                    <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor sit amet</h1></a>
-                    <div class="kebijakan-category">hukum</div>
-                    <p class="kebijakan-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                        mauris etiam maecenas et ... selanjutnya
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem, sit deleniti consequatur recusandae facilis amet
-                        adipisci exercitationem molestiae quis necessitatibus, ipsum voluptatibus iusto quod! Totam a vel quasi iste sunt.
-                    </p>
-                    <img class="kebijakan-category-logo" src="{% static 'img/logo-hukum.svg' %}" alt="" onload="SVGInject(this)">
-                </div>
+              {% endfor %}
 
             </div>
         </div>

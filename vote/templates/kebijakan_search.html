@@ -16,6 +16,7 @@
             </form>
         </div>
         <div class="page-content">
+          <form method="GET" action="{% url 'kebijakan_search' %}">
             <div class="radio-inputs">
                 <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
@@ -48,17 +49,17 @@
                     <span class="input-desc">Lainnya</span>
                 </label>
             </div>
+          </form>
 
-            <h1 class="section-header">Kebijakan-kebijakan Ekonomi</h1>
+            <h1 class="section-header">Kebijakan-kebijakan {{category}}</h1>
             
             <div class="kebijakan-list">
-
+              {% for policy in policies %}
                 <div class="kebijakan-item">
                     <div class="kebijakan-content">
-                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
+                        <a href="#"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
                         <p class="kebijakan-description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
-                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
+                          {{policy.content}}
                         </p>
                     </div>
                     <div class="kebijakan-socials">
@@ -66,57 +67,21 @@
                         <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
                         <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
                     </div>
+                    {% if category == 'Ekonomi' %}
                     <img class="kebijakan-category-logo" src="{% static 'img/logo-ekonomi.svg' %}" alt="" onload="SVGInject(this)">
-                </div>
-
-                <div class="kebijakan-item">
-                    <div class="kebijakan-content">
-                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
-                        <p class="kebijakan-description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
-                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
-                        </p>
-                    </div>
-                    <div class="kebijakan-socials">
-                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
-                    </div>
-                    <img class="kebijakan-category-logo" src="{% static 'img/logo-sospol.svg' %}" alt="" onload="SVGInject(this)">
-                </div>
-
-                <div class="kebijakan-item">
-                    <div class="kebijakan-content">
-                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
-                        <p class="kebijakan-description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
-                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
-                        </p>
-                    </div>
-                    <div class="kebijakan-socials">
-                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
-                    </div>
-                    <img class="kebijakan-category-logo" src="{% static 'img/logo-lingkungan.svg' %}" alt="" onload="SVGInject(this)">
-                </div>
-
-                <div class="kebijakan-item">
-                    <div class="kebijakan-content">
-                        <a href="#"><h1 class="kebijakan-title">Lorem Ipsum Dolor Sit</h1></a>
-                        <p class="kebijakan-description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo enim autem nemo eos voluptatem odio molestiae labore
-                            facilis architecto in laudantium, officiis quo. Pariatur expedita adipisci temporibus et mollitia dicta.
-                        </p>
-                    </div>
-                    <div class="kebijakan-socials">
-                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
-                    </div>
+                    {% elif category == 'Hukum' %}
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-hukum.svg' %}" alt="" onload="SVGInject(this)">
+                    {% elif category == 'Pendidikan' %}
                     <img class="kebijakan-category-logo" src="{% static 'img/logo-pendidikan.svg' %}" alt="" onload="SVGInject(this)">
+                    {% elif category == 'Sosial Politik' %}
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-sospol.svg' %}" alt="" onload="SVGInject(this)">
+                    {% elif category == 'Lingkungan' %}
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-lingkungan.svg' %}" alt="" onload="SVGInject(this)">
+                    {% elif category == 'Lainnya' %}
+                    <img class="kebijakan-category-logo" src="{% static 'img/logo-lainnya.svg' %}" alt="" onload="SVGInject(this)">
+                    {% endif %}
                 </div>
-
+                {% endfor %}
             </div>
         </div>
 
