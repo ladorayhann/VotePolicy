@@ -15,7 +15,7 @@ Testing:
     image: python:latest
     stage: test
     script:
-    - export DATABASE_URL=postgres://postgres:@localhost:5432/votepolicy
+    - export DATABASE_URL=postgres://postgres:postgres@postgres:5432/votepolicy
     - apt-get update -qy
     - pip install -r requirements.txt
     - python manage.py makemigrations
@@ -31,6 +31,6 @@ Production:
   stage: production
   image: ruby:latest
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=$HEROKU_APPNAME --api-key=$HEROKU_APIKEY
   only:
     - master
