@@ -1,4 +1,4 @@
-from vote.models import Category, StatusJapat, Japat
+from vote.models import Category, StatusJapat, Japat, Policy
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm, LoginForm
 from django.contrib.auth import authenticate
@@ -9,10 +9,16 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Japat
 
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
 # Create your views here.
 def home(request):
+    print(request.user)
     japats = Japat.objects.all().order_by('-voters')[:5]
-    return render(request, 'home.html', {"japats":japats})
+    policies = Policy.objects.all()[:3]
+    return render(request, 'home.html', {"japats":japats,"policies":policies})
 
 @csrf_exempt
 def login(request):
@@ -79,7 +85,8 @@ def logout(request):
 
 # progress
 def campaign_make(request):
-    if 'logged_in' not in request.session:
+    print(request.user)
+    if not request.user.is_authenticated and not request.user.is_superuser:
         return redirect('login')
     if request.method == 'POST':        
         category = None
@@ -124,7 +131,31 @@ def campaign_detail(request):
     return render(request, 'campaign_detail.html')
 
 def campaign_search(request):
-    return render(request, 'campaign_search.html')
+    category = Category.objects.get(deskripsi="Ekonomi")
+    qs = Japat.objects.all()
+    japats = Japat.objects.filter(category=category)
+    selected_category = request.GET.get('jenis_kampanye')
+    if is_valid_queryparam(selected_category):
+        if selected_category == 'ekonomi':
+            category = Category.objects.get(deskripsi="Ekonomi")
+            japats = qs.filter(category=category)
+        elif selected_category == 'hukum':
+            category = Category.objects.get(deskripsi="Hukum")
+            japats = qs.filter(category=category)
+        elif selected_category == 'lingkungan':
+            category = Category.objects.get(deskripsi="Lingkungan")
+            japats = qs.filter(category=category)
+        elif selected_category == 'pendidikan':
+            category = Category.objects.get(deskripsi="Pendidikan")
+            japats = qs.filter(category=category)
+        elif selected_category == 'sospol':
+            category = Category.objects.get(deskripsi="Sosial Politik")
+            japats = qs.filter(category=category)
+        elif selected_category == 'others':
+            category = Category.objects.get(deskripsi="Lainnya")
+            japats = qs.filter(category=category)
+    
+    return render(request, 'campaign_search.html', {'japats':japats, 'category':category.deskripsi})
 
 def vote(request):
     return render(request, 'vote.html')
@@ -134,7 +165,32 @@ def vote_detail(request):
     return render(request, 'vote_detail.html')
 
 def kebijakan_search(request):
-    return render(request, 'kebijakan_search.html')
+    category = Category.objects.get(deskripsi="Ekonomi")
+    print(category.deskripsi)
+    qs = Policy.objects.all()
+    policies = Policy.objects.filter(category=category)
+    selected_category = request.GET.get('jenis_kampanye')
+    if is_valid_queryparam(selected_category):
+        if selected_category == 'ekonomi':
+            category = Category.objects.get(deskripsi="Ekonomi")
+            policies = qs.filter(category=category)
+            print(category.deskripsi)
+        elif selected_category == 'hukum':
+            category = Category.objects.get(deskripsi="Hukum")
+            policies = qs.filter(category=category)
+        elif selected_category == 'lingkungan':
+            category = Category.objects.get(deskripsi="Lingkungan")
+            policies = qs.filter(category=category)
+        elif selected_category == 'pendidikan':
+            category = Category.objects.get(deskripsi="Pendidikan")
+            policies = qs.filter(category=category)
+        elif selected_category == 'sospol':
+            category = Category.objects.get(deskripsi="Sosial Politik")
+            policies = qs.filter(category=category)
+        elif selected_category == 'others':
+            category = Category.objects.get(deskripsi="Lainnya")
+            policies = qs.filter(category=category)
+    return render(request, 'kebijakan_search.html', {'policies':policies, 'category':category.deskripsi})
 
 def kebijakan_detail(request):
     return render(request, 'kebijakan_detail.html')

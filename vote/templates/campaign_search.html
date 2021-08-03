@@ -17,77 +17,55 @@
             </form>
         </div>
         <div class="page-content">
+          <form method="GET" action="{% url 'campaign_search' %}">
             <div class="radio-inputs">
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi" onclick="this.form.submit();">
                     <img class="input-img" src="{% static 'img/logo-ekonomi.svg' %}" alt="ekonomi" onload="SVGInject(this)">
                     <span class="input-desc">Ekonomi</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum" onclick="this.form.submit();">
                     <img class="input-img" src="{% static 'img/logo-hukum.svg' %}" alt="hukum" onload="SVGInject(this)">
                     <span class="input-desc">Hukum</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan" onclick="this.form.submit();">
                     <img class="input-img" src="{% static 'img/logo-lingkungan.svg' %}" alt="lingkungan" onload="SVGInject(this)">
                     <span class="input-desc">Lingkungan</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan" onclick="this.form.submit();">
                     <img class="input-img" src="{% static 'img/logo-pendidikan.svg' %}" alt="pendidikan" onload="SVGInject(this)">
                     <span class="input-desc">Pendidikan</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol" onclick="this.form.submit();">
                     <img class="input-img" src="{% static 'img/logo-sospol.svg' %}" alt="sospol" onload="SVGInject(this)">
                     <span class="input-desc">Sosial Politik</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="others">
+                    <input class="input-radio" type="radio" name="jenis_kampanye" value="others" onclick="this.form.submit();">
                     <img class="input-img" src="{% static 'img/logo-others.svg' %}" alt="others" onload="SVGInject(this)">
                     <span class="input-desc">Lainnya</span>
                 </label>
             </div>
+          </form>
+            
 
-            <h1 class="section-header">Kampanye Ekonomi</h1>
+            <h1 class="section-header">Kampanye {{category}}</h1>
             
             <div class="campaign-items">
+              {% for japat in japats %}
                 <div class="campaign-item">
-                    <h3 class="campaign-title">Lorem Ipsum</h3>
+                    <h3 class="campaign-title">{{japat.title}}</h3>
                     <p class="campaign-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                        mauris etiam maecenas et ... selanjutnya
+                      {{japat.content}}
                     </p>
                     <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
                     <button class="button-fill vote">VOTE</button>
                 </div>
-    
-                <div class="campaign-item">
-                    <h3 class="campaign-title">Lorem Ipsum</h3>
-                    <p class="campaign-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                        mauris etiam maecenas et ... selanjutnya
-                    </p>
-                    <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
-                    <button class="button-fill vote">VOTE</button>
-                </div>
-    
-                <div class="campaign-item">
-                    <h3 class="campaign-title">Lorem Ipsum</h3>
-                    <p class="campaign-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit
-                        ridiculus vel. Placerat egestas sit sit ridiculus vel. Dui a posuere mauris etiam maecenas etipsum dolor sit amet,
-                        consectetur adipiscing elit.orem nibh tellus commodo sagittis. Placerat egestas sit sit ridiculus vel. Dui a posuere
-                        mauris etiam maecenas et ... selanjutnya
-                    </p>
-                    <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
-                    <button class="button-fill vote">VOTE</button>
-                </div>
+                {% endfor %}
             </div>
 
 

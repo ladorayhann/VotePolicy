@@ -14,3 +14,7 @@ const radioInputs = document.getElementsByClassName("radio-item")
 Array.from(radioInputs).forEach(element => {
     element.addEventListener('change',toggleClass)
 });
+
+$('input[type=radio]').on('change', function() {
+  $(this).closest("form").submit();
+});
