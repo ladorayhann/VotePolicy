@@ -119,8 +119,9 @@
 }
 
 /* CHECKED STYLES */
-.radio-item.selected {
+.radio-item.selected, .radio-item.selected:active {
     background: #8D0507;
+    color: #FFFFFF;
     border: 1.8px solid #8D0507;
 }
 
