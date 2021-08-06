@@ -37,13 +37,13 @@
     width: 100%;
     max-height: 25em;
     overflow: hidden;
+    margin-top: 1em;
 }
 
 .campaign-title {
     width: 100%;
     text-align: center;
     font-weight: bold;
-    margin-bottom: 1em;
 }
 
 .campaign-img {
@@ -335,3 +335,17 @@
     font-size: 1.1rem;
 }
 
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    align-self: flex-end;
+    bottom: 2em;
+    right: 4vw;
+    opacity: 1;
+    transition: opacity 0.15s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}

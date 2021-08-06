@@ -62,7 +62,7 @@
 
             <form class="vote-comment-form" action="">
                 <h3 class="form-header">Komentar</h3>
-                <input class="input-text" type="text">
+                <input class="input-text" type="email" placeholder="Masukan email anda">
                 <textarea class="input-text" placeholder="Berikan komentar anda"></textarea>
                 <button class="button-fill">KIRIM</button>
             </form>
@@ -175,5 +175,5 @@
 {% endblock body %}
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-<script src="{% static 'js/vote.js' %}" ></script>
+<script src="{% static 'js/vote_detail.js' %}" ></script>
 {% endblock script %}

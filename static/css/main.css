@@ -276,12 +276,6 @@ a:hover {
     border: 1.5px solid #d64447;
 }
 
-
-.button-fill:active, .button-outline:active {
-	position:relative;
-	top:1px;
-}
-
 .button-fill:focus, .button-outline:focus {
     outline: none;
 }
