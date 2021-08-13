@@ -7,6 +7,7 @@ from django.contrib.auth import logout as auth_logout
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .models import Japat
 
 
@@ -154,8 +155,10 @@ def campaign_search(request):
         elif selected_category == 'others':
             category = Category.objects.get(deskripsi="Lainnya")
             japats = qs.filter(category=category)
-    
-    return render(request, 'campaign_search.html', {'japats':japats, 'category':category.deskripsi})
+    paginator = Paginator(japats, 4)
+    page_number = request.GET.get('page') or 1
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'campaign_search.html', {'page_obj':page_obj, 'category':category.deskripsi})
 
 def vote(request):
     return render(request, 'vote.html')
@@ -190,13 +193,15 @@ def kebijakan_search(request):
         elif selected_category == 'others':
             category = Category.objects.get(deskripsi="Lainnya")
             policies = qs.filter(category=category)
-    return render(request, 'kebijakan_search.html', {'policies':policies, 'category':category.deskripsi})
+    paginator = Paginator(policies, 4)
+    page_number = request.GET.get('page') or 1
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'kebijakan_search.html', {'page_obj':page_obj, 'category':category.deskripsi})
 
 def kebijakan_detail(request):
     return render(request, 'kebijakan_detail.html')
 
 def kebijakan_add(request):
     if request.method == "POST":
-        print("====================FIRED======================")
         messages.success(request, "test")
     return render(request, 'kebijakan_add.html')

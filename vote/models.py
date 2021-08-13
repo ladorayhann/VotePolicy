@@ -53,7 +53,7 @@ class Vote(models.Model):
 
 class Policy(models.Model):
     title = models.CharField(max_length=100, unique=False)
-    category = models.OneToOneField(Category, null=True,on_delete=models.RESTRICT)
+    category = models.ForeignKey(Category, null=True, on_delete=models.RESTRICT, blank=True)
     content = models.TextField(null=False)
     spotify = models.URLField(null=True, blank=True)
     youtube = models.URLField(null=True, blank=True)

@@ -19,32 +19,32 @@
         <div class="page-content">
           <form method="GET" action="{% url 'campaign_search' %}">
             <div class="radio-inputs">
-                <label class="radio-item" id="ekonomi">
+                <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
                     <img class="input-img" src="{% static 'img/logo-ekonomi.svg' %}" alt="ekonomi" onload="SVGInject(this)">
                     <span class="input-desc">Ekonomi</span>
                 </label>
-                <label class="radio-item" id="hukum">
+                <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum">
                     <img class="input-img" src="{% static 'img/logo-hukum.svg' %}" alt="hukum" onload="SVGInject(this)">
                     <span class="input-desc">Hukum</span>
                 </label>
-                <label class="radio-item" id="lingkungan">
+                <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan">
                     <img class="input-img" src="{% static 'img/logo-lingkungan.svg' %}" alt="lingkungan" onload="SVGInject(this)">
                     <span class="input-desc">Lingkungan</span>
                 </label>
-                <label class="radio-item" id="pendidikan">
+                <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan">
                     <img class="input-img" src="{% static 'img/logo-pendidikan.svg' %}" alt="pendidikan" onload="SVGInject(this)">
                     <span class="input-desc">Pendidikan</span>
                 </label>
-                <label class="radio-item" id="sospol">
+                <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol">
                     <img class="input-img" src="{% static 'img/logo-sospol.svg' %}" alt="sospol" onload="SVGInject(this)">
                     <span class="input-desc">Sosial Politik</span>
                 </label>
-                <label class="radio-item" id="others">
+                <label class="radio-item">
                     <input class="input-radio" type="radio" name="jenis_kampanye" value="others">
                     <img class="input-img" src="{% static 'img/logo-others.svg' %}" alt="others" onload="SVGInject(this)">
                     <span class="input-desc">Lainnya</span>
@@ -56,18 +56,39 @@
             <h1 class="section-header">Kampanye {{category}}</h1>
             
             <div class="campaign-items">
-              {% for japat in japats %}
+                {% for japat in page_obj %}
                 <div class="campaign-item">
                     <h3 class="campaign-title">{{japat.title}}</h3>
                     <p class="campaign-description">
                       {{japat.content}}
                     </p>
-                    <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
                     <button class="button-fill vote">VOTE</button>
                 </div>
                 {% endfor %}
+                
+                {% if page_obj.paginator.count %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                    {% else %}
+                    <div class="filler"></div>
+                    {% endif %}
+    
+                    <span class="page-numbers">
+                        Page
+                        <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
+                        of
+                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
+                    </span>
+                    
+                    {% if page_obj.has_next %}
+                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                    {% else %}
+                    <div class="filler"></div>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
-
 
         </div>
 
