@@ -85,6 +85,16 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
     cursor: pointer;
  }
+
+ .radio-item:hover {
+     background: #BA111B;
+     color: #FFFFFF;
+     border: 1.8px solid #BA111B;
+ }
+
+ .input-radio:hover + .input-img path, .input-radio:hover + .input-img ellipse  {
+    fill: #ffffff;
+}
  
 .input-img {
     max-height: 2.1em;
@@ -109,8 +119,9 @@
 }
 
 /* CHECKED STYLES */
-.radio-item.selected {
+.radio-item.selected, .radio-item.selected:active {
     background: #8D0507;
+    color: #FFFFFF;
     border: 1.8px solid #8D0507;
 }
 
@@ -120,13 +131,8 @@
 
 .input-radio:checked + .input-img path, [type=radio]:checked + .input-img ellipse  {
     fill: #ffffff;
-    stroke: #ffffff;
 }
 
-.input-radio[value = hukum]:checked + .input-img path {
-    stroke: #ffffff;
-    fill: #8D0507;
-}
 
 .radio-inputs {
     display: grid;
@@ -158,21 +164,18 @@
     flex-direction: column;
     row-gap: 3em;
     padding-bottom: 1em;
+    align-items: center;
 }
 
 .campaign-item {
-    display: grid;
-    grid-template-areas: 
-    "title title title"
-    "desc img img"
-    "button button button";
-    grid-auto-flow: row;
+    display: flex;
+    flex-direction: column;
     column-gap: 1em;
     background: #FFFFFF;
     border: 0.5px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    max-width: 50em;
+    width: 50em;
     padding: 2em 3em;
     margin: 0 1em;
 }
@@ -246,11 +249,15 @@
 }
 
 .kebijakan-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     column-gap: 3em;
     row-gap: 2em;
-    max-width: 50em;
+    max-width: 55em;
+    margin-bottom: 2em;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 }
 
 .kebijakan-item {
@@ -319,3 +326,44 @@
 }
 
 
+.pagination {
+    display: flex;
+    column-gap: 1em;
+    justify-content: center;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+.page-number {
+    cursor: pointer;
+    color: #8D0507;
+    font-weight: 700;
+}
+
+.arrow-left, .arrow-right {
+    cursor: pointer;
+    color: #8D0507;
+    font-weight: 700;
+    height: 12px;
+    width: 12px;
+    border:  solid #8D0507;
+    border-width:0 0 3.5px 3.5px ;
+    background: none;
+    margin-left: 5px;
+}
+
+.filler {
+    min-width: 0.5em;
+}
+
+.arrow-right {
+    transform: rotate(225deg);
+}
+
+.arrow-left {
+    transform: rotate(45deg);
+}
+
+a:hover {
+    color: #000000;
+}

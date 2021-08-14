@@ -213,11 +213,6 @@
     stroke: #ffffff;
 }
 
-.input-radio[value = hukum]:checked + .input-img path {
-    stroke: #ffffff;
-    fill: #8D0507;
-}
-
 .radio-inputs {
     display: grid;
     grid-template-columns: max-content max-content max-content;

@@ -1,25 +1,22 @@
-document.addEventListener( 'DOMContentLoaded', function () {
-	new Splide( '#card-slider', {
-		perPage    : 3,
-		perMove : 1,
-		width: '70em',
-		padding: {
-			left : '1.5em',
-			right: '1.5em',
-		},
-		gap:'1em',
-		classes: {
-			arrows: 'splide__arrows',
-			arrow : '.carousel-button',
-			prev  : 'splide__arrow--prev carousel-button left',
-			next  : 'splide__arrow--next carousel-button right',
-		},
-		pagination: false,
-		breakpoints: {
-			850: {
-				perPage: 1,
-				width : '35em'
-			}
-		}
-	} ).mount();
-} );
+function checkVisible(elm) {
+    var rect = elm.getBoundingClientRect();
+    var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
+    return !(rect.bottom < 0 || rect.top - viewHeight >= 0);
+}
+
+const form = document.querySelector('.vote-form')
+const jumpToVoteButton = document.querySelector('.button-fill.sticky')
+
+function toggleShow() {
+    if (checkVisible(form)) {
+        jumpToVoteButton.classList.add('fade-out')
+    } else {
+        jumpToVoteButton.classList.remove('fade-out')
+    }
+}
+
+window.onscroll = toggleShow
+
+jumpToVoteButton.onclick = function() {
+    form.scrollIntoView({behavior: "smooth"})
+}

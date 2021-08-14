@@ -54,7 +54,7 @@
             <h1 class="section-header">Kebijakan-kebijakan {{category}}</h1>
             
             <div class="kebijakan-list">
-              {% for policy in policies %}
+              {% for policy in page_obj %}
                 <div class="kebijakan-item">
                     <div class="kebijakan-content">
                         <a href="#"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
@@ -83,6 +83,29 @@
                 </div>
                 {% endfor %}
             </div>
+            
+            {% if page_obj.paginator.count %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                {% else %}
+                <div class="filler"></div>
+                {% endif %}
+            
+                <span class="page-numbers">
+                    Page
+                    <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
+                    of
+                    <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{page_obj.paginator.num_pages}}</span>
+                </span>
+            
+                {% if page_obj.has_next %}
+                <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                {% else %}
+                <div class="filler"></div>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
 
         

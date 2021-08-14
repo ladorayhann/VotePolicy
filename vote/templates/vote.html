@@ -11,10 +11,11 @@
             <img class="page-header-img" src="{% static 'img/bg-suara.png' %}" alt="">
         </div>
         <div class="page-content">
+            <ul class="breadcrumb">
+                <li><a href="#" class="breadcrumb-link" >Ekonomi</a></li>
+                <li><a href="#" class="breadcrumb-link current" >Lorem ipsum dolor sit amet</a></li>
+            </ul>
             <h1 class="campaign-title">Lorem ipsum dolor sit amet</h1>
-            <div class="campaign-img-container">
-                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
-            </div>
 
             <div class="campaign-category"> Ekonomi </div>
 
@@ -38,6 +39,16 @@
                 nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
             </p> 
 
+            <embed 
+                class="campaign-document" 
+                src="{% static 'docs/document.pdf' %}" 
+                type="application/pdf" 
+                frameBorder="0"
+                scrolling="auto" 
+                height="1000px" 
+                width="100%">
+            </embed>
+
             <form class="vote-form" action="{% url 'vote_detail' %}">
                 <h3 class="form-header">Apakah kamu setuju dengan kebijakan ini?</h3>
                 <span class="input-label">Email</span>
@@ -50,7 +61,10 @@
                 </div>
             </form>
         </div>
-        
+        <button class="button-fill sticky">VOTE</button>
     </div>
 
 {% endblock body %}
+{% block script %}
+<script src="{% static 'js/vote.js' %}" ></script>
+{% endblock script %}

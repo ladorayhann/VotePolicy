@@ -38,13 +38,21 @@
                 aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
                 nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
             </p> 
+            <embed 
+                class="campaign-document" 
+                src="{% static 'docs/document.pdf' %}" 
+                type="application/pdf" 
+                frameBorder="0"
+                scrolling="auto" 
+                height="1000px" 
+                width="100%">
+            </embed>
 
             <div class="vote-hasil">
                 <h3>Hasil Vote</h3>
                 <div class="vote-bar">
-                    <!-- dari backend tinggal isi persentase vote tidak setuju di width nya -->
-                    <div class="vote-bar-tidak-setuju" style="width: 43%;">43%</div>
-                    <div class="vote-bar-setuju">57%</div>
+                    <div class="vote-bar-tidak-setuju" style="width: 0%;">0%</div>
+                    <div class="vote-bar-setuju">100%</div>
                 </div>
                 <div class="vote-bar-info">
                     <span>TIDAK SETUJU</span>
@@ -54,7 +62,7 @@
 
             <form class="vote-comment-form" action="">
                 <h3 class="form-header">Komentar</h3>
-                <input class="input-text" type="text">
+                <input class="input-text" type="email" placeholder="Masukan email anda">
                 <textarea class="input-text" placeholder="Berikan komentar anda"></textarea>
                 <button class="button-fill">KIRIM</button>
             </form>
@@ -167,5 +175,5 @@
 {% endblock body %}
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-<script src="{% static 'js/vote.js' %}" ></script>
+<script src="{% static 'js/vote_detail.js' %}" ></script>
 {% endblock script %}

@@ -10,11 +10,28 @@ function toggleClass() {
     })
 }
 
-const radioInputs = document.getElementsByClassName("radio-item")
-Array.from(radioInputs).forEach(element => {
+function updateButton() {
+    const url = new URL(window.location.href)
+    const jenisKampanye = url.searchParams.get("jenis_kampanye") || 'ekonomi'
+    const selectedOption = document.querySelector(`.input-radio[value=${jenisKampanye}]`)
+    selectedOption.checked = true
+    toggleClass()
+}
+
+updateButton()
+
+function setPage(pageNum) {
+    var searchParams = new URLSearchParams(window.location.search)
+    searchParams.set('page', pageNum)
+    window.location.search = searchParams.toString()
+}
+
+const radioItems = document.getElementsByClassName("radio-item")
+Array.from(radioItems).forEach(element => {
     element.addEventListener('change',toggleClass)
 });
 
-$('input[type=radio]').on('change', function() {
-  $(this).closest("form").submit();
+const radioInputs = document.getElementsByClassName('input-radio')
+Array.from(radioInputs).forEach(element => {
+    element.addEventListener('change',() => {element.form.submit()})
 });
