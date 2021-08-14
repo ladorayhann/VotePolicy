@@ -133,7 +133,7 @@ def campaign_detail(request):
 
 def campaign_search(request):
     category = Category.objects.get(deskripsi="Ekonomi")
-    qs = Japat.objects.all()
+    qs = Japat.objects.all().order_by('id')
     japats = Japat.objects.filter(category=category)
     selected_category = request.GET.get('jenis_kampanye')
     if is_valid_queryparam(selected_category):
@@ -170,7 +170,7 @@ def vote_detail(request):
 def kebijakan_search(request):
     category = Category.objects.get(deskripsi="Ekonomi")
     print(category.deskripsi)
-    qs = Policy.objects.all()
+    qs = Policy.objects.all().order_by('id')
     policies = Policy.objects.filter(category=category)
     selected_category = request.GET.get('jenis_kampanye')
     if is_valid_queryparam(selected_category):
