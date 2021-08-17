@@ -18,6 +18,7 @@ def is_valid_queryparam(param):
 def home(request):
     print(request.user)
     japats = Japat.objects.all().order_by('-voters')[:5]
+    print(japats)
     policies = Policy.objects.all()[:3]
     return render(request, 'home.html', {"japats":japats,"policies":policies})
 
