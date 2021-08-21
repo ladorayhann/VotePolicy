@@ -55,40 +55,44 @@
 
             <h1 class="section-header">Kampanye {{category}}</h1>
             
+            {% if page_obj.paginator.count %}
             <div class="campaign-items">
                 {% for japat in page_obj %}
                 <div class="campaign-item">
                     <h3 class="campaign-title">{{japat.title}}</h3>
                     <p class="campaign-description">
-                      {{japat.content}}
+                        {{japat.content}}
                     </p>
                     <button class="button-fill vote">VOTE</button>
                 </div>
                 {% endfor %}
-                
-                {% if page_obj.paginator.count %}
+            
                 <div class="pagination">
                     {% if page_obj.has_previous %}
                     <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
-    
+            
                     <span class="page-numbers">
                         Page
                         <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
                         of
-                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
+                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{
+                            page_obj.paginator.num_pages}}</span>
                     </span>
-                    
+            
                     {% if page_obj.has_next %}
                     <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
                 </div>
-                {% endif %}
             </div>
+            {% else %}
+            <img class="vote-img" src="{% static 'img/vote.png' %}" alt="">
+            <h5 class="no-campaigns">Belum ada kampanye <br> untuk kategori {{ category|lower }}</h5>
+            {% endif %}
 
         </div>
 

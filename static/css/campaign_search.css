@@ -367,3 +367,12 @@
 a:hover {
     color: #000000;
 }
+
+.vote-img {
+    max-height: 15em;
+}
+
+.no-campaigns {
+    text-align: center;
+    margin-top: 1em;
+}

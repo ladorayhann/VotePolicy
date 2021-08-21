@@ -53,6 +53,7 @@
 
             <h1 class="section-header">Kebijakan-kebijakan {{category}}</h1>
             
+            {% if page_obj.paginator.count %}
             <div class="kebijakan-list">
               {% for policy in page_obj %}
                 <div class="kebijakan-item">
@@ -84,7 +85,6 @@
                 {% endfor %}
             </div>
             
-            {% if page_obj.paginator.count %}
             <div class="pagination">
                 {% if page_obj.has_previous %}
                 <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
@@ -105,6 +105,9 @@
                 <div class="filler"></div>
                 {% endif %}
             </div>
+            {% else %}
+            <img class="vote-img" src="{% static 'img/policy.png' %}" alt="">
+            <h5 class="no-campaigns">Belum ada kebijakan <br> untuk kategori {{ category|lower }}</h5>
             {% endif %}
         </div>
 
