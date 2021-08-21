@@ -24,8 +24,10 @@ updateButton()
 function setPage(pageNum, keyword, jenisKebijakan) {
     var searchParams = new URLSearchParams(window.location.search)
     searchParams.set('page', pageNum)
-    searchParams.set('keyword', keyword)
-    searchParams.set('jenis_kebijakan', jenisKebijakan)
+    if (keyword != undefined && jenisKebijakan != undefined){
+        searchParams.set('keyword', keyword)
+        searchParams.set('jenis_kebijakan', jenisKebijakan)
+    }
     window.location.search = searchParams.toString()
 }
 

@@ -70,20 +70,35 @@
                 {% if page_obj.paginator.count %}
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% if keyword != None and jenis_kampanye != None %}
+                        <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% else %}
+                        <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                        {% endif %}
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
     
                     <span class="page-numbers">
+                        {% if keyword != None and jenis_kampanye != None %}
+                        Page
+                        <span class="page-number" onclick="setPage('{{page_obj.number}}','{{keyword}}','{{jenis_kampanye}}')"> {{ page_obj.number }}</span>
+                        of
+                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}','{{keyword}}','{{jenis_kampanye}}')">{{ page_obj.paginator.num_pages}}</span>
+                        {% else %}
                         Page
                         <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
                         of
                         <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
-                    </span>
+                        {% endif %}
+                      </span>
                     
                     {% if page_obj.has_next %}
-                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% if keyword != None and jenis_kampanye != None %}
+                        <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% else %}
+                        <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                        {% endif %}
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}

@@ -191,7 +191,7 @@ def campaign_search(request):
             selected_category = request.session['campaign_category']
         campaigns = Japat.objects.filter(Q(category=category, content__icontains=keyword) | Q(category=category, title__icontains=keyword))
         print(campaigns)
-    elif request.GET.get('page') is not None:
+    elif request.GET.get('page') is not None and request.GET.get('keyword') is not None:
         if is_valid_queryparam(request.session['campaign_category']):
             category, _ = getCategoryCampaigns(qs, request.session['campaign_category'])
         else:
@@ -299,7 +299,7 @@ def kebijakan_search(request):
             selected_category = request.session['policy_category']
         policies = Policy.objects.filter(Q(category=category, content__icontains=keyword) | Q(category=category, title__icontains=keyword))
         print(policies)
-    elif request.GET.get('page') is not None:
+    elif request.GET.get('page') is not None and request.GET.get('keyword') is not None:
         if is_valid_queryparam(request.session['policy_category']):
             category, _ = getCategoryPolicies(qs, request.session['policy_category'])
         else:
