@@ -12,19 +12,20 @@ function toggleClass() {
 
 function updateButton() {
     const url = new URL(window.location.href)
-    const jenisKampanye = url.searchParams.get("jenis_kampanye") || 'ekonomi'
-    const selectedOption = document.querySelector(`.input-radio[value=${jenisKampanye}]`)
+    const jenisKebijakan = url.searchParams.get("jenis_kebijakan") || 'ekonomi'
+    const selectedOption = document.querySelector(`.input-radio[value=${jenisKebijakan}]`)
     selectedOption.checked = true
     toggleClass()
 }
 
 updateButton()
 
-function setPage(pageNum, keyword, jenisKampanye) {
+
+function setPage(pageNum, keyword, jenisKebijakan) {
     var searchParams = new URLSearchParams(window.location.search)
     searchParams.set('page', pageNum)
     searchParams.set('keyword', keyword)
-    searchParams.set('jenis_kampanye', jenisKampanye)
+    searchParams.set('jenis_kebijakan', jenisKebijakan)
     window.location.search = searchParams.toString()
 }
 

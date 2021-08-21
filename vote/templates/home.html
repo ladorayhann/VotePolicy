@@ -11,7 +11,7 @@
     <div class="page-container">
         <div class="page-header">
             <img class="page-header-img" src="{% static 'img/title-demokrasi.svg' %}" alt="">
-            {% if user.is_authenticated and user.is_superuser == False %}
+            {% if user.is_authenticated and user.is_superuser == True %}
             <a class="button-fill invert" href="{% url 'campaign_make' %}">Kampanyekan Suaramu</a>
             {% endif %}
         </div>

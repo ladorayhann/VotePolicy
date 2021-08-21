@@ -11,9 +11,10 @@
     <div class="page-container">
         <div class="page-header">
             <h1>Telusuri Kampanye</h1>
-            <form class="search-group">
+            <form method="POST" class="search-group" action="{% url 'campaign_search' %}?page=1&keyword={{keyword}}&jenis_kampanye={{ jenis_kampanye }}">
+              {% csrf_token %}
                 <button type="submit"><img class="search-icon" src="{% static 'img/icon-search.svg' %}" alt="search"></button>
-                <input class="search-input" type="text">
+                <input class="search-input" name="search" type="text">
             </form>
         </div>
         <div class="page-content">
@@ -69,7 +70,7 @@
                 {% if page_obj.paginator.count %}
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
@@ -82,7 +83,7 @@
                     </span>
                     
                     {% if page_obj.has_next %}
-                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
