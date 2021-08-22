@@ -89,17 +89,10 @@
                         Page
                         <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
                         of
-<<<<<<< HEAD
-                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{
-                            page_obj.paginator.num_pages}}</span>
-                    </span>
-            
-=======
                         <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
                         {% endif %}
                       </span>
                     
->>>>>>> e9e798e9a8fc4b6291db8bc3b7857f1b4596c3b3
                     {% if page_obj.has_next %}
                         {% if keyword != None and jenis_kampanye != None %}
                         <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
