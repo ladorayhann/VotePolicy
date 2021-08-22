@@ -11,9 +11,10 @@
     <div class="page-container">
         <div class="page-header">
             <h1>Telusuri Kampanye</h1>
-            <form class="search-group">
+            <form method="POST" class="search-group" action="{% url 'campaign_search' %}?page=1&keyword={{keyword}}&jenis_kampanye={{ jenis_kampanye }}">
+              {% csrf_token %}
                 <button type="submit"><img class="search-icon" src="{% static 'img/icon-search.svg' %}" alt="search"></button>
-                <input class="search-input" type="text">
+                <input class="search-input" name="search" type="text">
             </form>
         </div>
         <div class="page-content">
@@ -69,21 +70,42 @@
             
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                        {% if keyword != None and jenis_kampanye != None %}
+                        <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% else %}
+                        <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                        {% endif %}
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
             
                     <span class="page-numbers">
+                        {% if keyword != None and jenis_kampanye != None %}
+                        Page
+                        <span class="page-number" onclick="setPage('{{page_obj.number}}','{{keyword}}','{{jenis_kampanye}}')"> {{ page_obj.number }}</span>
+                        of
+                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}','{{keyword}}','{{jenis_kampanye}}')">{{ page_obj.paginator.num_pages}}</span>
+                        {% else %}
                         Page
                         <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
                         of
+<<<<<<< HEAD
                         <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{
                             page_obj.paginator.num_pages}}</span>
                     </span>
             
+=======
+                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
+                        {% endif %}
+                      </span>
+                    
+>>>>>>> e9e798e9a8fc4b6291db8bc3b7857f1b4596c3b3
                     {% if page_obj.has_next %}
-                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                        {% if keyword != None and jenis_kampanye != None %}
+                        <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% else %}
+                        <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                        {% endif %}
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}

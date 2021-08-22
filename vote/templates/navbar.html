@@ -38,12 +38,12 @@
           <li class="dropdown-container" tabindex="-1">
             <button class="nav-dropdown nav-item"> Policy <div class="dropdown-icon"></div> </button>
             <div class="dropdown-items" id="policy-dropdown">
-              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kampanye=hukum">Hukum</a>
-              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kampanye=ekonomi">Ekonomi</a>
-              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kampanye=lingkungan">Lingkungan</a>
-              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kampanye=sospol">Sosial Politik</a>
-              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kampanye=pendidikan">Pendidikan</a>
-              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kampanye=others">Lainnya</a>
+              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=hukum">Hukum</a>
+              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=ekonomi">Ekonomi</a>
+              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=lingkungan">Lingkungan</a>
+              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=sospol">Sosial Politik</a>
+              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=pendidikan">Pendidikan</a>
+              <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=others">Lainnya</a>
             </div>
           </li>
           {% if user.is_authenticated and user.is_superuser == False %}

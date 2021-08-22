@@ -10,41 +10,43 @@
     <div class="page-container">
         <div class="page-header">
             <h1>Telusuri Kebijakan</h1>
-            <form class="search-group">
+            
+            <form method="POST" class="search-group" action="{% url 'kebijakan_search' %}?page=1&keyword={{keyword}}&jenis_kebijakan={{ jenis_kebijakan }}">
+              {% csrf_token %}
                 <button type="submit"><img class="search-icon" src="{% static 'img/icon-search.svg' %}" alt="search"></button>
-                <input class="search-input" type="text">
+                <input name="search" class="search-input" type="text">
             </form>
         </div>
         <div class="page-content">
           <form method="GET" action="{% url 'kebijakan_search' %}">
             <div class="radio-inputs">
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
+                    <input class="input-radio" type="radio" name="jenis_kebijakan" value="ekonomi">
                     <img class="input-img" src="{% static 'img/logo-ekonomi.svg' %}" alt="ekonomi" onload="SVGInject(this)">
                     <span class="input-desc">Ekonomi</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum">
+                    <input class="input-radio" type="radio" name="jenis_kebijakan" value="hukum">
                     <img class="input-img" src="{% static 'img/logo-hukum.svg' %}" alt="hukum" onload="SVGInject(this)">
                     <span class="input-desc">Hukum</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan">
+                    <input class="input-radio" type="radio" name="jenis_kebijakan" value="lingkungan">
                     <img class="input-img" src="{% static 'img/logo-lingkungan.svg' %}" alt="lingkungan" onload="SVGInject(this)">
                     <span class="input-desc">Lingkungan</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan">
+                    <input class="input-radio" type="radio" name="jenis_kebijakan" value="pendidikan">
                     <img class="input-img" src="{% static 'img/logo-pendidikan.svg' %}" alt="pendidikan" onload="SVGInject(this)">
                     <span class="input-desc">Pendidikan</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol">
+                    <input class="input-radio" type="radio" name="jenis_kebijakan" value="sospol">
                     <img class="input-img" src="{% static 'img/logo-sospol.svg' %}" alt="sospol" onload="SVGInject(this)">
                     <span class="input-desc">Sosial Politik</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="others">
+                    <input class="input-radio" type="radio" name="jenis_kebijakan" value="others">
                     <img class="input-img" src="{% static 'img/logo-others.svg' %}" alt="others" onload="SVGInject(this)">
                     <span class="input-desc">Lainnya</span>
                 </label>
@@ -87,20 +89,35 @@
             
             <div class="pagination">
                 {% if page_obj.has_previous %}
-                <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                    {% if keyword != None and jenis_kebijakan != None %}
+                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_kebijakan}}')"></a>
+                    {% else %}
+                    <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                    {% endif %}
                 {% else %}
                 <div class="filler"></div>
                 {% endif %}
             
                 <span class="page-numbers">
-                    Page
-                    <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
-                    of
-                    <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{page_obj.paginator.num_pages}}</span>
+                  {% if keyword != None and jenis_kebijakan != None %}
+                  Page
+                  <span class="page-number" onclick="setPage('{{page_obj.number}}','{{keyword}}','{{jenis_kebijakan}}')"> {{ page_obj.number }}</span>
+                  of
+                  <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}','{{keyword}}','{{jenis_kebijakan}}')">{{ page_obj.paginator.num_pages}}</span>
+                  {% else %}
+                  Page
+                  <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
+                  of
+                  <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
+                  {% endif %}
                 </span>
             
                 {% if page_obj.has_next %}
-                <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                    {% if keyword != None and jenis_kebijakan != None %}
+                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kebijakan}}')"></a>
+                    {% else %}
+                    <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                    {% endif %}
                 {% else %}
                 <div class="filler"></div>
                 {% endif %}
@@ -116,5 +133,5 @@
 
 {% endblock body %}
 {% block script %}
-<script src="{% static 'js/campaign_search.js' %}" ></script>
+<script src="{% static 'js/kebijakan_search.js' %}" ></script>
 {% endblock script %}
