@@ -56,18 +56,18 @@
 
             <h1 class="section-header">Kampanye {{category}}</h1>
             
+            {% if page_obj.paginator.count %}
             <div class="campaign-items">
                 {% for japat in page_obj %}
                 <div class="campaign-item">
                     <h3 class="campaign-title">{{japat.title}}</h3>
                     <p class="campaign-description">
-                      {{japat.content}}
+                        {{japat.content}}
                     </p>
                     <button class="button-fill vote">VOTE</button>
                 </div>
                 {% endfor %}
-                
-                {% if page_obj.paginator.count %}
+            
                 <div class="pagination">
                     {% if page_obj.has_previous %}
                         {% if keyword != None and jenis_kampanye != None %}
@@ -78,7 +78,7 @@
                     {% else %}
                     <div class="filler"></div>
                     {% endif %}
-    
+            
                     <span class="page-numbers">
                         {% if keyword != None and jenis_kampanye != None %}
                         Page
@@ -103,8 +103,11 @@
                     <div class="filler"></div>
                     {% endif %}
                 </div>
-                {% endif %}
             </div>
+            {% else %}
+            <img class="vote-img" src="{% static 'img/vote.png' %}" alt="">
+            <h5 class="no-campaigns">Belum ada kampanye <br> untuk kategori {{ category|lower }}</h5>
+            {% endif %}
 
         </div>
 

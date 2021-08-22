@@ -55,6 +55,7 @@
 
             <h1 class="section-header">Kebijakan-kebijakan {{category}}</h1>
             
+            {% if page_obj.paginator.count %}
             <div class="kebijakan-list">
               {% for policy in page_obj %}
                 <div class="kebijakan-item">
@@ -65,9 +66,9 @@
                         </p>
                     </div>
                     <div class="kebijakan-socials">
-                        <a href="#"><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
-                        <a href="#"><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
+                        <a href={{policy.youtube|default_if_none:"#"}}><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
+                        <a href={{policy.instagram|default_if_none:"#"}}><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
+                        <a href={{policy.spotify|default_if_none:"#"}}><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
                     </div>
                     {% if category == 'Ekonomi' %}
                     <img class="kebijakan-category-logo" src="{% static 'img/logo-ekonomi.svg' %}" alt="" onload="SVGInject(this)">
@@ -86,7 +87,6 @@
                 {% endfor %}
             </div>
             
-            {% if page_obj.paginator.count %}
             <div class="pagination">
                 {% if page_obj.has_previous %}
                     {% if keyword != None and jenis_kebijakan != None %}
@@ -122,6 +122,9 @@
                 <div class="filler"></div>
                 {% endif %}
             </div>
+            {% else %}
+            <img class="vote-img" src="{% static 'img/policy.png' %}" alt="">
+            <h5 class="no-campaigns">Belum ada kebijakan <br> untuk kategori {{ category|lower }}</h5>
             {% endif %}
         </div>
 

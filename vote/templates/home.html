@@ -56,6 +56,11 @@
                         {{policy.content}} ... selanjutnya
                     </p>
                     <img class="kebijakan-category-logo" src="{% static 'img/logo-ekonomi.svg' %}" alt="" onload="SVGInject(this)">
+                    <div class="kebijakan-socials">
+                        <a href={{policy.youtube|default_if_none:"#"}}><img src="{% static 'img/icon-yt.svg' %}" alt=""> </a>
+                        <a href={{policy.instagram|default_if_none:"#"}}><img src="{% static 'img/icon-ig.svg' %}" alt=""> </a>
+                        <a href={{policy.spotify|default_if_none:"#"}}><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
+                    </div>
                 </div>
               {% endfor %}
 

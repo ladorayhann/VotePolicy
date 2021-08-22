@@ -183,7 +183,8 @@
     display: grid;
     grid-template-areas: 
     "title category"
-    "desc desc";
+    "desc desc"
+    "socials socials";
     grid-template-columns: auto 1fr;
     grid-template-rows: max-content max-content;
     justify-items: baseline;
@@ -195,7 +196,8 @@
     border-radius: 8px;
     padding: 2em;
     max-width: 65em;
-    height: 19em;
+    min-height: 19em;
+    /* height: 19em; */
     margin-bottom: 3em;
     position: relative;
     overflow: hidden;
@@ -213,11 +215,12 @@
 .kebijakan-title {
     grid-area: title;
     font-weight: bold;
+    font-size: 1.8em;
     text-overflow: ellipsis;
     overflow-wrap:break-word;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
 }
 
@@ -229,7 +232,7 @@
     overflow-wrap:break-word;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; 
 }
 
@@ -252,4 +255,12 @@
 
 .kebijakan-category-logo path {
     fill: rgba(128, 5, 8, 0.41);
+}
+
+.kebijakan-socials {
+    grid-area: socials;
+    display: flex;
+    column-gap: 1em;
+    align-items: center;
+    align-self: flex-end;
 }

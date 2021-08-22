@@ -25,7 +25,7 @@ def home(request):
         pass
     japats = Japat.objects.all().order_by('-voters')[:5]
     print(japats)
-    policies = Policy.objects.all()[:3]
+    policies = Policy.objects.all().order_by('id')[:3]
     return render(request, 'home.html', {"japats":japats,"policies":policies})
 
 @csrf_exempt

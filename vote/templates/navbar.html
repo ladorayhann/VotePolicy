@@ -35,7 +35,7 @@
           <li>
             <a class="nav-item" href="{% url 'campaign_search'%}">Vote!</a>
           </li>
-          <li class="dropdown-container" tabindex="-1">
+          <li class="dropdown-container">
             <button class="nav-dropdown nav-item"> Policy <div class="dropdown-icon"></div> </button>
             <div class="dropdown-items" id="policy-dropdown">
               <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=hukum">Hukum</a>
@@ -46,7 +46,7 @@
               <a class="dropdown-item" href="{% url 'kebijakan_search'%}?jenis_kebijakan=others">Lainnya</a>
             </div>
           </li>
-          {% if user.is_authenticated and user.is_superuser == False %}
+          {% if user.is_authenticated and user.is_superuser == True %}
           <li>
             <a class="nav-item" href="#">Kampanye Saya</a>
           </li>
@@ -54,7 +54,7 @@
         </ul>
     
         <div class="nav-profile" tabindex="-1">
-          {% if user.is_authenticated and user.is_superuser == False %}
+          {% if user.is_authenticated %}
           <button class="nav-dropdown nav-item"> <img class="icon-user" src="{% static 'img/icon-user.svg' %}" alt="logo">
             Akun Saya
             <div class="dropdown-icon"></div>
