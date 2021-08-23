@@ -28,6 +28,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0 15vw;
+    width: 100%;
 }
 
 .campaign-img-container {
@@ -338,7 +339,7 @@
     display: flex;
     flex-direction: column;
     margin: 2em 0;
-    width: 100%;
+    text-align: justify;
 }
 
 .kebijakan-content p {
