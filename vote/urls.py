@@ -15,6 +15,6 @@ urlpatterns = [
     path('vote', views.vote, name='vote'),
     path('vote/detail', views.vote_detail, name='vote_detail'),
     path('kebijakan', views.kebijakan_search, name='kebijakan_search'),
-    path('kebijakan/detail', views.kebijakan_detail, name='kebijakan_detail'),
+    path('kebijakan/detail/<int:id>', views.kebijakan_detail, name='kebijakan_detail'),
     path('kebijakan/add', views.kebijakan_add, name='kebijakan_add'),
 ]

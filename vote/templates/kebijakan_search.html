@@ -60,9 +60,9 @@
               {% for policy in page_obj %}
                 <div class="kebijakan-item">
                     <div class="kebijakan-content">
-                        <a href="#"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
+                        <a href="{% url 'kebijakan_detail' policy.pk  %}"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
                         <p class="kebijakan-description">
-                          {{policy.content}}
+                          {{policy.overview}}
                         </p>
                     </div>
                     <div class="kebijakan-socials">

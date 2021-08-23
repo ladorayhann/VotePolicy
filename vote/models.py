@@ -52,9 +52,10 @@ class Vote(models.Model):
         return f'Vote : {str(self.japat.title)}'
 
 class Policy(models.Model):
-    title = models.CharField(max_length=100, unique=False)
+    title = models.CharField(max_length=1000, unique=True)
     category = models.ForeignKey(Category, null=True, on_delete=models.RESTRICT, blank=True)
     content = models.TextField(null=False)
+    overview = models.TextField(null=True)
     spotify = models.URLField(null=True, blank=True)
     youtube = models.URLField(null=True, blank=True)
     instagram = models.URLField(null=True, blank=True)

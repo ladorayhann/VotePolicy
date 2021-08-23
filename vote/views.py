@@ -327,13 +327,15 @@ def kebijakan_search(request):
 
     return render(request, 'kebijakan_search.html', {'page_obj':page_obj, 'category':category.deskripsi, 'keyword':keyword, 'jenis_kebijakan':selected_category})
 
-def kebijakan_detail(request):
+def kebijakan_detail(request, id):
     try:
         del request.session['policy_category']
         del request.session['campaign_category']
     except KeyError:
         pass
-    return render(request, 'kebijakan_detail.html')
+
+    policy = Policy.objects.get(pk=id)
+    return render(request, 'kebijakan_detail.html', {'policy':policy})
 
 def kebijakan_add(request):
     try:
