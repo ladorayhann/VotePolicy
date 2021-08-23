@@ -17,4 +17,6 @@ urlpatterns = [
     path('kebijakan', views.kebijakan_search, name='kebijakan_search'),
     path('kebijakan/detail/<int:id>', views.kebijakan_detail, name='kebijakan_detail'),
     path('kebijakan/add', views.kebijakan_add, name='kebijakan_add'),
+    path('profile', views.profile, name='profile'),
+    path('profile/update', views.profile_update, name='profile_update'),
 ]

@@ -81,7 +81,9 @@ def register(request):
                 return redirect('login')
             messages.error(request, "Klik Checkbox Syarat Dahulu", extra_tags="failed")
             return redirect('register')
-        
+        else:
+            print(form.errors)
+
         user = User.objects.filter(username=request.POST["username"])
         if len(user) > 0:
             messages.error(request, "Nama sudah digunakan", extra_tags="failed")
@@ -92,6 +94,7 @@ def register(request):
         if request.POST['password1'] == request.POST['password2'] and len(request.POST['password1']) < 8:
             messages.error(request, "Kata sandi setidaknya memiliki 8 karakter", extra_tags="failed")
             return redirect('register')
+        
         
 
     context = {'form':form}
@@ -346,3 +349,9 @@ def kebijakan_add(request):
     if request.method == "POST":
         messages.success(request, "test")
     return render(request, 'kebijakan_add.html')
+
+def profile(request):
+    return render(request, "profile.html")
+
+def profile_update(request):
+    return render(request, "profile_update.html")
