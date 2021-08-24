@@ -1,0 +1,37 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'css/kebijakan_add.css' %}" rel="stylesheet">
+{% endblock style %}
+
+{% block body %}
+    <div class="page-container">
+        <div class="page-header">
+            <h1>AKUN SAYA</h1>
+        </div>
+        {{ request.user.name }}
+        <div class="page-content">
+            <form class="form-box" action="{% url 'profile_update' %}" method="POST">
+                <div class="form-field">
+                    <div class="form-label">Username</div>
+                    <input class="form-input" type="text" value="{{request.user.username}}" >
+                </div>
+                <div class="form-field">
+                    <div class="form-label">Email</div>
+                    <input class="form-input" type="email" value="{{request.user.email}}" >
+                </div>
+                <div class="form-field">
+                    <div class="form-label">Kata Sandi</div>
+                    <input class="form-input" type="password" >
+                </div>
+                <button class="button-fill">SIMPAN</button>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+   
+{% endblock body %}
+{% block script %}
+<script src="{% static 'js/campaign_search.js' %}" ></script>
+{% endblock script %}
