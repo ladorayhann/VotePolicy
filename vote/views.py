@@ -1,3 +1,4 @@
+from django.db.models.fields import PositiveBigIntegerField
 from vote.models import Category, StatusJapat, Japat, Policy
 from django.shortcuts import render, redirect
 from .forms import CreateUserForm, LoginForm
@@ -8,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import Japat
+from .models import Comment, Japat, Vote, StatusVote
 from django.db.models import Q
 
 
@@ -160,9 +161,10 @@ def campaign_home(request):
         del request.session['campaign_category']
     except KeyError:
         pass
-    if not request.user.is_authenticated and not request.user.is_superuser:
-        return redirect('login')
-    return render(request, 'campaign_home.html')
+    # if not request.user.is_authenticated and not request.user.is_superuser:
+    #     return redirect('login')
+    campaign = Japat.objects.filter(user=request.user)
+    return render(request, 'campaign_home.html', {"campaigns":campaign})
 
 def campaign_detail(request):
     try:
@@ -228,14 +230,53 @@ def vote(request):
         pass
     return render(request, 'vote.html')
 
-def vote_detail(request):
+def vote_detail(request,id):
     try:
         del request.session['policy_category']
         del request.session['campaign_category']
     except KeyError:
         pass
-    messages.success(request, "test")
-    return render(request, 'vote_detail.html')
+    user_voted = False
+    user_comments = False
+    campaign_detail = Japat.objects.get(pk=id)
+    category = campaign_detail.category
+    status_vote_no = StatusVote.objects.get(statusVote=False)
+    status_vote_ok = StatusVote.objects.get(statusVote=True)
+    if request.method == "POST":
+        if 'setuju' in request.POST:
+            email = request.POST['email']
+            Vote.objects.create(japat=campaign_detail, user=request.user, statusVote=status_vote_ok, email=email)
+            messages.success(request, "test")
+        if 'tidak' in request.POST:
+            email = request.POST['email']
+            Vote.objects.create(japat=campaign_detail, user=request.user, statusVote=status_vote_no, email=email)
+            messages.success(request, "test")
+        
+        voters = Vote.objects.filter(japat=campaign_detail)
+        campaign_detail.voters = len(voters)
+        campaign_detail.save()
+
+        if 'comment' in request.POST:
+            email = request.POST['email']
+            content = request.POST['content']
+            Comment.objects.create(japat=campaign_detail, email=email, content=content, is_policy=False)
+                    
+    comments_vote = Comment.objects.filter(japat=campaign_detail)
+    if comments_vote.exists():
+        user_comments = True
+    vote = Vote.objects.filter(user=request.user, japat=campaign_detail)
+    if vote.exists():
+        vote = Vote.objects.get(user=request.user, japat=campaign_detail)
+        user_voted = True
+
+    setuju_votes = len(Vote.objects.filter(japat=campaign_detail,statusVote=status_vote_ok))
+    all_votes = len(Vote.objects.filter(japat=campaign_detail))
+    try:
+        setuju_percetage = round((setuju_votes/all_votes) * 100)
+    except ZeroDivisionError:
+        setuju_percetage = 0
+    
+    return render(request, 'vote_detail.html', {"campaign":campaign_detail, "category":category.deskripsi, "voted":user_voted, "setuju":setuju_percetage, "tidak_setuju":100-setuju_percetage, "comments":user_comments, "comments_vote":comments_vote})
 
 def getCategoryPolicies(qs,selected_category):
     category = None
@@ -337,8 +378,17 @@ def kebijakan_detail(request, id):
     except KeyError:
         pass
 
+    user_comments = False
     policy = Policy.objects.get(pk=id)
-    return render(request, 'kebijakan_detail.html', {'policy':policy})
+    if 'comment' in request.POST:
+        email = request.POST['email']
+        content = request.POST['content']
+        Comment.objects.create(policy=policy, email=email, content=content, is_policy=False)
+                    
+    comments_policy = Comment.objects.filter(policy=policy)
+    if comments_policy.exists():
+        user_comments = True
+    return render(request, 'kebijakan_detail.html', {'policy':policy, "comments":user_comments, "comments_policy":comments_policy})
 
 def kebijakan_add(request):
     try:

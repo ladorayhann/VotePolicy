@@ -60,7 +60,7 @@
             <div class="campaign-items">
                 {% for japat in page_obj %}
                 <div class="campaign-item">
-                    <h3 class="campaign-title">{{japat.title}}</h3>
+                  <a href="{% url 'vote_detail' japat.pk  %}"><h3 class="campaign-title">{{japat.title}}</h3></a>
                     <p class="campaign-description">
                         {{japat.content}}
                     </p>

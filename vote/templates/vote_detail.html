@@ -6,37 +6,22 @@
 <link href="{% static 'css/campaign_detail.css' %}" rel="stylesheet">
 {% endblock style %}
 
+
 {% block body %}
     <div class="page-container">
         <div class="page-header">
             <img class="page-header-img" src="{% static 'img/bg-suara.png' %}" alt="">
         </div>
         <div class="page-content">
-            <h1 class="campaign-title">Lorem ipsum dolor sit amet</h1>
+            <h1 class="campaign-title">{{campaign.title}}</h1>
             <div class="campaign-img-container">
                 <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
             </div>
 
-            <div class="campaign-category"> Ekonomi </div>
+            <div class="campaign-category"> {{category}} </div>
 
             <p class="campaign-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id id libero aenean diam vestibulum. Nulla vitae nibh
-                eleifend nulla proin tincidunt. In diam ac nam orci eu. Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci
-                commodo. Erat faucibus quis integer mauris a. Dolor sodales ac gravida porta in posuere. Donec sed ornare pulvinar
-                aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
-                nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
-                Pellentesque viverra at justo at ut amet velit, pretium nisl. Sit eu suscipit amet, sit tristique volutpat dignissim
-                tortor id. Risus posuere tincidunt pharetra, mauris faucibus venenatis elementum. Potenti malesuada dignissim elit
-                tellus feugiat vulputate in et viverra. Egestas elit viverra pharetra a posuere consectetur sed. Justo feugiat id quis
-                consectetur. Feugiat quam convallis pretium enim maecenas id. Tempor, tellus sollicitudin est lacus quisque mattis.
-                Sagittis, nunc, blandit aliquam eget tincidunt in in sit hac. Aenean imperdiet morbi amet, in quisque condimentum at
-                enim, tortor. Ac eget odio quisque quis. Fermentum, euismod magna blandit lectus rhoncus luctus quis urna risus. Arcu
-                nec condimentum a enim non in. Eleifend at nunc odio varius.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae id id libero aenean diam vestibulum. Nulla vitae nibh
-                eleifend nulla proin tincidunt. In diam ac nam orci eu. Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci
-                commodo. Erat faucibus quis integer mauris a. Dolor sodales ac gravida porta in posuere. Donec sed ornare pulvinar
-                aliquet vel, vitae sapien. Sed ac magnis tempus est nam ac pharetra. Metus lorem at quisque vel pharetra. Sed accumsan
-                nisi molestie elit molestie vestibulum. Justo, lacus tellus tempus eu quam.
+                {{campaign.content}}
             </p> 
             <embed 
                 class="campaign-document" 
@@ -48,11 +33,28 @@
                 width="100%">
             </embed>
 
+            {% if voted == False %}
+
+            <form class="vote-form" method="POST" action="{% url 'vote_detail' id=campaign.pk %}">
+              {% csrf_token %}
+              <h3 class="form-header">Apakah kamu setuju dengan kebijakan ini?</h3>
+              <span class="input-label">Email</span>
+              <input class="input-text" name="email" type="email" required>
+              <small class="input-alert">*Anda harus mengisi email sebelum memilih</small>
+              <!-- insert captcha here -->
+              <div class="vote-buttons">
+                  <button type="submit" name="setuju" value="setuju" class="button-fill">SETUJU</button>
+                  <button type="submit" name="tidak" value="tidak" class="button-outline">TIDAK SETUJU</button>
+              </div>
+          </form>
+
+          {% else %}
+
             <div class="vote-hasil">
                 <h3>Hasil Vote</h3>
                 <div class="vote-bar">
-                    <div class="vote-bar-tidak-setuju" style="width: 0%;">0%</div>
-                    <div class="vote-bar-setuju">100%</div>
+                    <div class="vote-bar-tidak-setuju" style="width: {{tidak_setuju}}%;">{{tidak_setuju}}%</div>
+                    <div class="vote-bar-setuju">{{setuju}}%</div>
                 </div>
                 <div class="vote-bar-info">
                     <span>TIDAK SETUJU</span>
@@ -60,30 +62,28 @@
                 </div>
             </div>
 
-            <form class="vote-comment-form" action="">
+            <form class="vote-comment-form" method="POST" action="{% url 'vote_detail' id=campaign.pk %}">
+              {% csrf_token %}
                 <h3 class="form-header">Komentar</h3>
-                <input class="input-text" type="email" placeholder="Masukan email anda">
-                <textarea class="input-text" placeholder="Berikan komentar anda"></textarea>
-                <button class="button-fill">KIRIM</button>
+                <input class="input-text" type="email" name="email" placeholder="Masukan email anda">
+                <textarea class="input-text" name="content" placeholder="Berikan komentar anda"></textarea>
+                <button type="submit" name="comment" value="comment" class="button-fill">KIRIM</button>
             </form>
 
-            <div class="vote-comments">
-                <div class="vote-comment">
-                    <h4 class="comment-poster">Lado Rayhan</h4>
-                    <p class="comment-text">
-                        Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a. Dolor
-                        sodales ac elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a.
-                    </p>
-                </div>
+            {% if comments == True %}
 
+            <div class="vote-comments">
+              {% for comment in comments_vote %}
                 <div class="vote-comment">
-                    <h4 class="comment-poster">Lado Rayhan</h4>
+                    <h4 class="comment-poster">{{comment.email}}</h4>
                     <p class="comment-text">
-                        Nunc volutpat sit elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a. Dolor
-                        sodales ac elit nunc. Pulvinar elementum adipiscing orci commodo. Erat faucibus quis integer mauris a.
+                        {{comment.content}}
                     </p>
                 </div>
+                {% endfor %}
             </div>
+
+            {% endif %}
 
             <h2 class="section-header">Kampanye Terkait</h2>
 
@@ -127,7 +127,11 @@
                     <button class="splide__arrow splide__arrow--next carousel-button right"></button>
                 </div>
             </div>
+            {% endif %}
         </div>
+        {% if voted == False %}
+        <button class="button-fill sticky">VOTE</button>
+        {% endif %}
         
     </div>
 
@@ -176,4 +180,5 @@
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script src="{% static 'js/vote_detail.js' %}" ></script>
+<script src="{% static 'js/vote.js' %}" ></script>
 {% endblock script %}

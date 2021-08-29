@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime, timedelta, tzinfo
 from django.contrib.auth.models import User
+from django.forms.widgets import MediaDefiningClass
 from django.utils import timezone
 
 
@@ -45,8 +46,9 @@ class StatusVote(models.Model):
 
 class Vote(models.Model):
     japat = models.ForeignKey(Japat, on_delete=models.RESTRICT)
+    user = models.ForeignKey(User, null=True, on_delete=models.RESTRICT)
     email = models.EmailField()
-    statusVote = models.OneToOneField(StatusVote, null=True, on_delete=models.RESTRICT)
+    statusVote = models.ForeignKey(StatusVote, null=True,on_delete=models.RESTRICT)
     
     def __str__(self):
         return f'Vote : {str(self.japat.title)}'
@@ -67,6 +69,7 @@ class Policy(models.Model):
 class Comment(models.Model):
     content = models.CharField(max_length=100)
     policy = models.ForeignKey(Policy, null=True, on_delete=models.RESTRICT, blank=True)
+    japat = models.ForeignKey(Japat, null=True, on_delete=models.RESTRICT, blank=True)
     vote = models.ForeignKey(Vote, null=True, on_delete=models.RESTRICT, blank=True)
     created_time = models.DateTimeField(default=timezone.now)
     is_policy = models.BooleanField()

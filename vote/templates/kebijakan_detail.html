@@ -21,7 +21,6 @@
 
             <div class="category-list">
                 <div class="kebijakan-category"> {{policy.category.deskripsi}} </div>
-                <div class="kebijakan-category"> {{policy.category.deskripsi}} </div>
             </div>
 
             <div class="kebijakan-content">
@@ -45,12 +44,28 @@
                 </a>
             </div>
 
-            <form class="vote-comment-form" action="">
-                <h2 class="section-header">Komentar</h2>
-                <input class="input-text" type="email" placeholder="Email">
-                <textarea class="input-text" placeholder="Berikan komentar anda"></textarea>
-                <button class="button-fill">KIRIM</button>
+            <form class="vote-comment-form" method="POST" action="{% url 'kebijakan_detail' id=policy.pk %}">
+              {% csrf_token %}
+                <h3 class="form-header">Komentar</h3>
+                <input class="input-text" type="email" name="email" placeholder="Masukan email anda">
+                <textarea class="input-text" name="content" placeholder="Berikan komentar anda"></textarea>
+                <button type="submit" name="comment" value="comment" class="button-fill">KIRIM</button>
             </form>
+
+            {% if comments == True %}
+
+            <div class="vote-comments">
+              {% for comment in comments_policy %}
+                <div class="vote-comment">
+                    <h4 class="comment-poster">{{comment.email}}</h4>
+                    <p class="comment-text">
+                        {{comment.content}}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            {% endif %}
         </div>
         
     </div>

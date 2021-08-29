@@ -11,62 +11,31 @@
             <h1>KAMPANYE SAYA</h1>
         </div>
         <div class="campaign-list">
-            <a class="campaign-item" href="#">
+            {% for campaign in campaigns %}
+            <a class="campaign-item" href="{% url 'vote_detail' campaign.pk  %}">
                 <div class="campaign-img-container">
                     <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
                 </div>
                 <div class="campaign-title">
-                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                    <div class="campaign-category">Ekonomi</div>
+                    <h3>{{campaign.title}}</h3>
+                    <div class="campaign-category">{{campaign.category.deskripsi}}</div>
                 </div>
                 
                 <p class="campaign-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus mauris habitant id lectus. Massa id nec facilisi habitant
-                    euismod blandit vestibulum. Duis volutpat dictum eu lorem nibh tellus commodo sagittis. Placerat egestas sit sit
-                    ridiculus vel. Dui a posuere mauris etiam maecenas et. ...Selanjutnya
+                    {{campaign.content}}
                 </p>
                 <div class="campaign-status">
-                    <div class="status disetujui">DISETUJUI</div>
-                </div>
-
-            </a>
-            <a class="campaign-item" href="">
-                <div class="campaign-img-container">
-                    <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
-                </div>
-                <div class="campaign-title">
-                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                    <div class="campaign-category">Ekonomi</div>
-                </div>
-                
-                <p class="campaign-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus mauris habitant id lectus. Massa id nec facilisi habitant
-                    euismod blandit vestibulum. Duis volutpat dictum eu lorem nibh tellus commodo sagittis. Placerat egestas sit sit
-                    ridiculus vel. Dui a posuere mauris etiam maecenas et. ...Selanjutnya
-                </p>
-                <div class="campaign-status">
-                    <div class="status menunggu">MENUNGGU</div>
+                    {% if campaign.statusJapat.deskripsi == "Disetujui" %}
+                    <div class="status disetujui">{{campaign.statusJapat.deskripsi}}</div>
+                    {% elif campaign.statusJapat.deskripsi == "Pending" %}
+                    <div class="status menunggu">{{campaign.statusJapat.deskripsi}}</div>
+                    {% elif campaign.statusJapat.deskripsi == "Ditolak" %}
+                    <div class="status ditolak">{{campaign.statusJapat.deskripsi}}</div>
+                    {% endif %}
+                    
                 </div>
             </a>
-
-            <a class="campaign-item" href="">
-                <div class="campaign-img-container">
-                    <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
-                </div>
-                <div class="campaign-title">
-                    <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                    <div class="campaign-category">Ekonomi</div>
-                </div>
-                
-                <p class="campaign-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus mauris habitant id lectus. Massa id nec facilisi habitant
-                    euismod blandit vestibulum. Duis volutpat dictum eu lorem nibh tellus commodo sagittis. Placerat egestas sit sit
-                    ridiculus vel. Dui a posuere mauris etiam maecenas et. ...Selanjutnya
-                </p>
-                <div class="campaign-status">
-                    <div class="status ditolak">DITOLAK</div>
-                </div>
-            </a>
+            {% endfor %}
         </div>
     </div>
 
