@@ -403,7 +403,4 @@ def recaptcha_verified(recaptcha_response):
     }
     res = requests.post('https://www.google.com/recaptcha/api/siteverify', data)
     content = res.json()
-    if content['success']:
-        return True
-    else :
-        return content['error-codes']
+    return content['success'] 
