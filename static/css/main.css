@@ -259,9 +259,22 @@ a:hover {
 	background-color: #8D0507;
 }
 
+.button-fill:disabled, .button-fill:disabled:hover {
+    color:#ffffff;
+	background-color: #a0494b;
+    cursor: default;
+}
+
 .button-outline {
     background:#ffffff;
 	color: #8D0507;
+}
+
+.button-outline:disabled, .button-outline:disabled:hover {
+    background:#ffffff;
+	color: #a0494b;
+    border: 1.5px solid #a0494b;
+    cursor: default;
 }
 
 .button-fill:hover {

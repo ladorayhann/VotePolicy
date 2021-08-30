@@ -11,7 +11,9 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Comment, Japat, Vote, StatusVote
 from django.db.models import Q
-
+from django.urls import reverse
+import requests
+from vp.settings import RECAPTCHA_SECRET_KEY, RECAPTCHA_SITE_KEY
 
 
 def is_valid_queryparam(param):
@@ -151,8 +153,7 @@ def campaign_make(request):
         japat = Japat.objects.create(user=request.user, statusJapat=status, category=category, title=title, content=deskripsi, target=target, file1=files)
         japat.save()
         messages.success(request, "Kebijakan akan dinilai oleh tim vote.policy,status akan di update paling lama 2x24 jam", extra_tags="success")
-        return redirect('campaign_make')
-
+        return redirect(reverse('vote_detail', kwargs={"id": japat.id}))
     return render(request, 'campaign_make.html')
 
 def campaign_home(request):
@@ -165,16 +166,6 @@ def campaign_home(request):
     #     return redirect('login')
     campaign = Japat.objects.filter(user=request.user)
     return render(request, 'campaign_home.html', {"campaigns":campaign})
-
-def campaign_detail(request):
-    try:
-        del request.session['policy_category']
-        del request.session['campaign_category']
-    except KeyError:
-        pass
-    if not request.user.is_authenticated and not request.user.is_superuser:
-        return redirect('login')
-    return render(request, 'campaign_detail.html')
 
 def campaign_search(request):
     try:
@@ -222,14 +213,6 @@ def campaign_search(request):
 
     return render(request, 'campaign_search.html', {'page_obj':page_obj, 'category':category.deskripsi, 'keyword':keyword, 'jenis_kampanye':selected_category})
 
-def vote(request):
-    try:
-        del request.session['policy_category']
-        del request.session['campaign_category']
-    except KeyError:
-        pass
-    return render(request, 'vote.html')
-
 def vote_detail(request,id):
     try:
         del request.session['policy_category']
@@ -243,6 +226,8 @@ def vote_detail(request,id):
     status_vote_no = StatusVote.objects.get(statusVote=False)
     status_vote_ok = StatusVote.objects.get(statusVote=True)
     if request.method == "POST":
+        if not recaptcha_verified(request.POST['g-recaptcha-response']):
+            return redirect(reverse('vote_detail'))
         if 'setuju' in request.POST:
             email = request.POST['email']
             Vote.objects.create(japat=campaign_detail, user=request.user, statusVote=status_vote_ok, email=email)
@@ -260,7 +245,7 @@ def vote_detail(request,id):
             email = request.POST['email']
             content = request.POST['content']
             Comment.objects.create(japat=campaign_detail, email=email, content=content, is_policy=False)
-                    
+
     comments_vote = Comment.objects.filter(japat=campaign_detail)
     if comments_vote.exists():
         user_comments = True
@@ -268,15 +253,23 @@ def vote_detail(request,id):
     if vote.exists():
         vote = Vote.objects.get(user=request.user, japat=campaign_detail)
         user_voted = True
-
     setuju_votes = len(Vote.objects.filter(japat=campaign_detail,statusVote=status_vote_ok))
     all_votes = len(Vote.objects.filter(japat=campaign_detail))
     try:
         setuju_percetage = round((setuju_votes/all_votes) * 100)
     except ZeroDivisionError:
         setuju_percetage = 0
-    
-    return render(request, 'vote_detail.html', {"campaign":campaign_detail, "category":category.deskripsi, "voted":user_voted, "setuju":setuju_percetage, "tidak_setuju":100-setuju_percetage, "comments":user_comments, "comments_vote":comments_vote})
+    context = {
+        "campaign": campaign_detail,
+        "category": category.deskripsi,
+        "voted": user_voted,
+        "setuju": setuju_percetage,
+        "tidak_setuju": 100 - setuju_percetage,
+        "comments": user_comments,
+        "comments_vote": comments_vote,
+        "recaptcha_sitekey" : RECAPTCHA_SITE_KEY
+    }
+    return render(request, 'vote_detail.html', context)
 
 def getCategoryPolicies(qs,selected_category):
     category = None
@@ -342,7 +335,6 @@ def kebijakan_search(request):
         else:
             selected_category = request.session['policy_category']
         policies = Policy.objects.filter(Q(category=category, content__icontains=keyword) | Q(category=category, title__icontains=keyword))
-        print(policies)
     elif request.GET.get('page') is not None and request.GET.get('keyword') is not None:
         if is_valid_queryparam(request.session['policy_category']):
             category, _ = getCategoryPolicies(qs, request.session['policy_category'])
@@ -351,7 +343,6 @@ def kebijakan_search(request):
         keyword = request.GET.get('keyword')
         print(keyword)
         policies = Policy.objects.filter(Q(category=category, content__icontains=keyword) | Q(category=category, title__icontains=keyword))
-        print(policies)
     else:
         category = Category.objects.get(deskripsi="Ekonomi")
         policies = Policy.objects.filter(category=category)
@@ -363,7 +354,6 @@ def kebijakan_search(request):
         else:
             selected_category = 'ekonomi'
             request.session['policy_category'] = selected_category
-    
     paginator = Paginator(policies, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -405,3 +395,12 @@ def profile(request):
 
 def profile_update(request):
     return render(request, "profile_update.html")
+
+def recaptcha_verified(recaptcha_response):
+    data = {
+        'secret' : RECAPTCHA_SECRET_KEY,
+        'response' : recaptcha_response
+    }
+    res = requests.post('https://www.google.com/recaptcha/api/siteverify', data)
+    content = res.json()
+    return content['success'] 

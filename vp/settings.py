@@ -23,6 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 config = dotenv_values(".env")
 
 SECRET_KEY = config['SECRET_KEY']
+RECAPTCHA_SITE_KEY = os.getenv('RECAPTCHA_SITE_KEY') or config['RECAPTCHA_SITE_KEY']
+RECAPTCHA_SECRET_KEY = os.getenv('RECAPTCHA_SECRET_KEY') or config['RECAPTCHA_SECRET_KEY']
 
 
 # Quick-start development settings - unsuitable for production

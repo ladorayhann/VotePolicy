@@ -432,3 +432,7 @@
     opacity: 0;
     transition: opacity 0.15s ease;
 }
+
+.g-recaptcha {
+    margin-top: 1em;
+}
