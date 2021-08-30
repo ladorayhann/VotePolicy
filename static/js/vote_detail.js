@@ -22,4 +22,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			}
 		}
 	} ).mount();
+
 } );
+
+function recaptchaCallback()  {
+	const buttons = document.querySelectorAll('.vote-buttons button')
+	buttons.forEach((button) => {
+		button.disabled = false;
+		button.title = ""
+	})
+}

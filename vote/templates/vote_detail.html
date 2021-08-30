@@ -3,6 +3,8 @@
 
 {% block style %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="{% static 'js/vote_detail.js' %}" ></script>
 <link href="{% static 'css/campaign_detail.css' %}" rel="stylesheet">
 {% endblock style %}
 
@@ -14,9 +16,6 @@
         </div>
         <div class="page-content">
             <h1 class="campaign-title">{{campaign.title}}</h1>
-            <div class="campaign-img-container">
-                <img class="campaign-img" src="{% static 'img/contoh.png' %}" alt="">
-            </div>
 
             <div class="campaign-category"> {{category}} </div>
 
@@ -36,17 +35,17 @@
             {% if voted == False %}
 
             <form class="vote-form" method="POST" action="{% url 'vote_detail' id=campaign.pk %}">
-              {% csrf_token %}
-              <h3 class="form-header">Apakah kamu setuju dengan kebijakan ini?</h3>
-              <span class="input-label">Email</span>
-              <input class="input-text" name="email" type="email" required>
-              <small class="input-alert">*Anda harus mengisi email sebelum memilih</small>
-              <!-- insert captcha here -->
-              <div class="vote-buttons">
-                  <button type="submit" name="setuju" value="setuju" class="button-fill">SETUJU</button>
-                  <button type="submit" name="tidak" value="tidak" class="button-outline">TIDAK SETUJU</button>
-              </div>
-          </form>
+                {% csrf_token %}
+                <h3 class="form-header">Apakah kamu setuju dengan kebijakan ini?</h3>
+                <span class="input-label">Email</span>
+                <input class="input-text" name="email" type="email" required>
+                <small class="input-alert">*Anda harus mengisi email sebelum memilih</small>
+                <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey={{ recaptcha_sitekey }}></div>
+                <div class="vote-buttons" >
+                    <button type="submit" name="setuju" value="setuju" class="button-fill" disabled title="Please fill out all the fields">SETUJU</button>
+                    <button type="submit" name="tidak" value="tidak" class="button-outline" disabled title="Please fill out all the fields">TIDAK SETUJU</button>
+                </div>
+            </form>
 
           {% else %}
 
@@ -179,6 +178,5 @@
 {% endblock body %}
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-<script src="{% static 'js/vote_detail.js' %}" ></script>
 <script src="{% static 'js/vote.js' %}" ></script>
 {% endblock script %}
