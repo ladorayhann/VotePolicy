@@ -162,8 +162,8 @@ def campaign_home(request):
         del request.session['campaign_category']
     except KeyError:
         pass
-    # if not request.user.is_authenticated and not request.user.is_superuser:
-    #     return redirect('login')
+    if not request.user.is_authenticated:
+        return redirect('login')
     campaign = Japat.objects.filter(user=request.user)
     return render(request, 'campaign_home.html', {"campaigns":campaign})
 
@@ -172,7 +172,7 @@ def campaign_search(request):
         del request.session['policy_category']
     except KeyError:
         pass
-    if not request.user.is_authenticated and not request.user.is_superuser:
+    if not request.user.is_authenticated:
         return redirect('login')
     keyword = None
     qs = Japat.objects.all().order_by('id')
@@ -219,6 +219,8 @@ def vote_detail(request,id):
         del request.session['campaign_category']
     except KeyError:
         pass
+    if not request.user.is_authenticated:
+        return redirect('login')
     user_voted = False
     user_comments = False
     campaign_detail = Japat.objects.get(pk=id)
@@ -226,7 +228,7 @@ def vote_detail(request,id):
     status_vote_no = StatusVote.objects.get(statusVote=False)
     status_vote_ok = StatusVote.objects.get(statusVote=True)
     if request.method == "POST":
-        if not recaptcha_verified(request.POST['g-recaptcha-response']):
+        if 'g-recaptcha-response' in request.POST and not recaptcha_verified(request.POST['g-recaptcha-response']):
             return redirect(reverse('vote_detail'))
         if 'setuju' in request.POST:
             email = request.POST['email']
