@@ -10,9 +10,7 @@ urlpatterns = [
     # progress
     path('campaign_make', views.campaign_make, name='campaign_make'),
     path('campaign_home', views.campaign_home, name='campaign_home'),
-    path('campaign_detail', views.campaign_detail, name='campaign_detail'),
     path('campaign_search', views.campaign_search, name='campaign_search'),
-    path('vote', views.vote, name='vote'),
     path('vote/detail/<int:id>', views.vote_detail, name='vote_detail'),
     path('kebijakan', views.kebijakan_search, name='kebijakan_search'),
     path('kebijakan/detail/<int:id>', views.kebijakan_detail, name='kebijakan_detail'),

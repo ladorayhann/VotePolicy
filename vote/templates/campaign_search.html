@@ -64,7 +64,7 @@
                     <p class="campaign-description">
                         {{japat.content}}
                     </p>
-                    <button class="button-fill vote">VOTE</button>
+                    <a href="{% url 'vote_detail' japat.pk  %}" class="button-fill vote" ">VOTE</a>
                 </div>
                 {% endfor %}
             
