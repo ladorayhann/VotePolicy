@@ -9,3 +9,5 @@ const accordions = document.getElementsByClassName("section-accordion")
 Array.from(accordions).forEach(element => {
     element.addEventListener('click', (e) => toggleActive(e))
 });
+
+

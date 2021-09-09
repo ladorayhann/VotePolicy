@@ -436,3 +436,41 @@
 .g-recaptcha {
     margin-top: 1em;
 }
+
+.pagination {
+  display: flex;
+  column-gap: 1em;
+  justify-content: center;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.page-number {
+  cursor: pointer;
+  color: #8D0507;
+  font-weight: 700;
+}
+
+.arrow-left, .arrow-right {
+  cursor: pointer;
+  color: #8D0507;
+  font-weight: 700;
+  height: 12px;
+  width: 12px;
+  border:  solid #8D0507;
+  border-width:0 0 3.5px 3.5px ;
+  background: none;
+  margin-left: 5px;
+}
+
+.filler {
+  min-width: 0.5em;
+}
+
+.arrow-right {
+  transform: rotate(225deg);
+}
+
+.arrow-left {
+  transform: rotate(45deg);
+}

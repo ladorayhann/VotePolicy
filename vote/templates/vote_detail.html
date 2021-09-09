@@ -22,17 +22,20 @@
             <p class="campaign-description">
                 {{campaign.content}}
             </p> 
+
+            {% if campaign.url_file != None %}
             <embed 
                 class="campaign-document" 
-                src="{% static 'docs/document.pdf' %}" 
+                src="{{campaign.url_file}}" 
                 type="application/pdf" 
                 frameBorder="0"
                 scrolling="auto" 
                 height="1000px" 
                 width="100%">
             </embed>
+            {% endif %}
 
-            {% if voted == False %}
+            {% if voted == False and user.is_authenticated %}
 
             <form class="vote-form" method="POST" action="{% url 'vote_detail' id=campaign.pk %}">
                 {% csrf_token %}
@@ -42,12 +45,27 @@
                 <small class="input-alert">*Anda harus mengisi email sebelum memilih</small>
                 <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey={{ recaptcha_sitekey }}></div>
                 <div class="vote-buttons" >
+                  
                     <button type="submit" name="setuju" value="setuju" class="button-fill" disabled title="Please fill out all the fields">SETUJU</button>
                     <button type="submit" name="tidak" value="tidak" class="button-outline" disabled title="Please fill out all the fields">TIDAK SETUJU</button>
-                </div>
+                    
+                  </div>
             </form>
-
-          {% else %}
+            {% elif voted == False and not user.is_authenticated %}
+            <form class="vote-form" method="GET" action="{% url 'login' %}">
+              <h3 class="form-header">Apakah kamu setuju dengan kebijakan ini?</h3>
+              <span class="input-label">Email</span>
+              <input class="input-text" name="email" type="email" required>
+              <small class="input-alert">*Anda harus mengisi email sebelum memilih</small>
+              <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey={{ recaptcha_sitekey }}></div>
+              <div class="vote-buttons" >
+      
+                <button type="submit" name="setuju" value="setuju" class="button-fill" disabled title="Please fill out all the fields">SETUJU</button>
+                <button type="submit" name="tidak" value="tidak" class="button-outline" disabled title="Please fill out all the fields">TIDAK SETUJU</button>
+                  
+                </div>
+          </form>
+          {% elif voted == True %}
 
             <div class="vote-hasil">
                 <h3>Hasil Vote</h3>
@@ -71,8 +89,10 @@
 
             {% if comments == True %}
 
+            {% if page_obj.paginator.count %}
             <div class="vote-comments">
-              {% for comment in comments_vote %}
+              
+              {% for comment in page_obj %}
                 <div class="vote-comment">
                     <h4 class="comment-poster">{{comment.email}}</h4>
                     <p class="comment-text">
@@ -80,11 +100,36 @@
                     </p>
                 </div>
                 {% endfor %}
+                <div class="pagination">
+                  {% if page_obj.has_previous %}
+                      <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
+                  {% else %}
+                  <div class="filler"></div>
+                  {% endif %}
+              
+                  <span class="page-numbers">
+        
+                    Page
+                    <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
+                    of
+                    <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}')">{{ page_obj.paginator.num_pages}}</span>
+                  </span>
+              
+                  {% if page_obj.has_next %}
+                     
+                      <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
+                      
+                  {% else %}
+                  <div class="filler"></div>
+                  {% endif %}
+              </div>
             </div>
+            
+          {% endif %}
 
             {% endif %}
 
-            <h2 class="section-header">Kampanye Terkait</h2>
+            <!-- <h2 class="section-header">Kampanye Terkait</h2>
 
             <div id="card-slider" class="splide campaign-carousel">
                 <div class="splide__track">
@@ -125,11 +170,15 @@
                     <button class="splide__arrow splide__arrow--prev carousel-button left"></button>
                     <button class="splide__arrow splide__arrow--next carousel-button right"></button>
                 </div>
-            </div>
+            </div> -->
             {% endif %}
         </div>
         {% if voted == False %}
+        {% if user.is_authenticated %}
         <button class="button-fill sticky">VOTE</button>
+        {% else %}
+        <button class="button-fill sticky"><a style=color:white; href="{% url 'login' %}">VOTE</a></button>
+        {% endif %}
         {% endif %}
         
     </div>
@@ -179,4 +228,5 @@
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script src="{% static 'js/vote.js' %}" ></script>
+<script src="{% static 'js/kebijakan_search.js' %}" ></script>
 {% endblock script %}

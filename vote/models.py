@@ -26,7 +26,7 @@ class Japat(models.Model):
     target = models.CharField(max_length=100, null=False, default="")
     content = models.TextField(null=False, default="")
     image = models.ImageField(null=True, blank=True)
-    file1 = models.FileField(null=True, blank=True)
+    url_file = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     created_time = models.DateTimeField(default=timezone.now)
 

@@ -14,6 +14,22 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import dotenv_values
+from firebase import Firebase
+
+configFirebase = {
+    "apiKey": "AIzaSyCelehjfDyadXpkokZWNIwBuDr3eopE-SE",
+    "authDomain": "votepolicy-4d7d4.firebaseapp.com",
+    "projectId": "votepolicy-4d7d4",
+    "databaseURL": "https://lvotepolicy-4d7d4-default-rtdb.firebaseio.com/",
+    "storageBucket": "votepolicy-4d7d4.appspot.com",
+    "messagingSenderId": "971109116089",
+    "appId": "1:971109116089:web:749c07ed94b967e1c35368",
+    "measurementId": "G-S04PLJQMKV",
+}
+
+
+firebase = Firebase(configFirebase)
+storage = firebase.storage()
 
 
 

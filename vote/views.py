@@ -13,7 +13,9 @@ from .models import Comment, Japat, Vote, StatusVote
 from django.db.models import Q
 from django.urls import reverse
 import requests
+from vp.settings import MEDIA_ROOT, MEDIA_URL
 from vp.settings import RECAPTCHA_SECRET_KEY, RECAPTCHA_SITE_KEY
+from vp.settings import storage
 
 
 def is_valid_queryparam(param):
@@ -112,7 +114,7 @@ def logout(request):
     auth_logout(request)
     return redirect('login')
 
-# progress
+# progress'
 def campaign_make(request):
     try:
         del request.session['policy_category']
@@ -141,16 +143,21 @@ def campaign_make(request):
         target = request.POST['target']
         deskripsi = request.POST['deskripsi']
         status = None
-        if 'file' in request.FILES:
-            files = request.FILES['file']
-        else:
-            files = None
         try:
             status = StatusJapat.objects.get(deskripsi="Pending")
         except:
             status = StatusJapat.objects.create(deskripsi="Pending")
-
-        japat = Japat.objects.create(user=request.user, statusJapat=status, category=category, title=title, content=deskripsi, target=target, file1=files)
+        if 'file' in request.FILES:
+            files = request.FILES['file']
+        else:
+            files = None
+        
+        japat = Japat.objects.create(user=request.user, statusJapat=status, category=category, title=title, content=deskripsi, target=target, url_file=files)
+        japat.save()
+        japat_pk = japat.pk
+        storage.child(f"japat-files/{japat_pk}/{files.name}").put(files)
+        file_url = storage.child(f"japat-files/{japat_pk}/{files.name}").get_url(None)
+        japat.url_file = file_url
         japat.save()
         messages.success(request, "Kebijakan akan dinilai oleh tim vote.policy,status akan di update paling lama 2x24 jam", extra_tags="success")
         return redirect(reverse('vote_detail', kwargs={"id": japat.id}))
@@ -172,8 +179,6 @@ def campaign_search(request):
         del request.session['policy_category']
     except KeyError:
         pass
-    if not request.user.is_authenticated:
-        return redirect('login')
     keyword = None
     qs = Japat.objects.all().order_by('id')
     if request.method == "POST":
@@ -219,8 +224,6 @@ def vote_detail(request,id):
         del request.session['campaign_category']
     except KeyError:
         pass
-    if not request.user.is_authenticated:
-        return redirect('login')
     user_voted = False
     user_comments = False
     campaign_detail = Japat.objects.get(pk=id)
@@ -251,16 +254,20 @@ def vote_detail(request,id):
     comments_vote = Comment.objects.filter(japat=campaign_detail)
     if comments_vote.exists():
         user_comments = True
-    vote = Vote.objects.filter(user=request.user, japat=campaign_detail)
-    if vote.exists():
-        vote = Vote.objects.get(user=request.user, japat=campaign_detail)
-        user_voted = True
+    if request.user.is_authenticated:
+        vote = Vote.objects.filter(user=request.user, japat=campaign_detail)
+        if vote.exists():
+            vote = Vote.objects.get(user=request.user, japat=campaign_detail)
+            user_voted = True
     setuju_votes = len(Vote.objects.filter(japat=campaign_detail,statusVote=status_vote_ok))
     all_votes = len(Vote.objects.filter(japat=campaign_detail))
     try:
         setuju_percetage = round((setuju_votes/all_votes) * 100)
     except ZeroDivisionError:
         setuju_percetage = 0
+    paginator = Paginator(comments_vote, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         "campaign": campaign_detail,
         "category": category.deskripsi,
@@ -268,10 +275,13 @@ def vote_detail(request,id):
         "setuju": setuju_percetage,
         "tidak_setuju": 100 - setuju_percetage,
         "comments": user_comments,
-        "comments_vote": comments_vote,
-        "recaptcha_sitekey" : RECAPTCHA_SITE_KEY
+        "page_obj": page_obj,
+        "recaptcha_sitekey" : RECAPTCHA_SITE_KEY,
+        "media_root":MEDIA_ROOT,
+        "media_url":MEDIA_URL,
     }
     return render(request, 'vote_detail.html', context)
+
 
 def getCategoryPolicies(qs,selected_category):
     category = None
@@ -318,7 +328,6 @@ def getCategoryCampaigns(qs,selected_category):
         category = Category.objects.get(deskripsi="Lainnya")
         campaign = qs.filter(category=category)
     return category, campaign
-
 
 def kebijakan_search(request):
     try:
@@ -380,7 +389,11 @@ def kebijakan_detail(request, id):
     comments_policy = Comment.objects.filter(policy=policy)
     if comments_policy.exists():
         user_comments = True
-    return render(request, 'kebijakan_detail.html', {'policy':policy, "comments":user_comments, "comments_policy":comments_policy})
+
+    paginator = Paginator(comments_policy, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'kebijakan_detail.html', {'policy':policy, "comments":user_comments, "page_obj":page_obj})
 
 def kebijakan_add(request):
     try:
