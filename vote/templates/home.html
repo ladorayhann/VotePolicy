@@ -12,12 +12,12 @@
         <div class="page-header">
             <img class="page-header-img" src="{% static 'img/title-demokrasi.svg' %}" alt="">
             {% if user.is_authenticated and user.is_superuser %}
-            <a class="button-fill invert" href="{% url 'campaign_make' %}">Kampanyekan Suaramu</a>
+            <a class="button-fill invert" href="{% url 'campaign_make' %}">Serukan Suaramu</a>
             {% endif %}
         </div>
         <div class="page-content">
 
-            <h1 class="section-header">Kampanye Terpopuler</h1>
+            <h1 class="section-header">Seruan Terpopuler</h1>
 
             <div id="card-slider" class="splide campaign-carousel">
                 <div class="splide__track">

@@ -125,17 +125,17 @@ def campaign_make(request):
         return redirect('login')
     if request.method == 'POST':        
         category = None
-        if request.POST['jenis_kampanye'] == 'lingkungan':
+        if request.POST['jenis_seruan'] == 'lingkungan':
             category = Category.objects.get(deskripsi='Lingkungan')
-        elif request.POST['jenis_kampanye'] == 'sospol':
+        elif request.POST['jenis_seruan'] == 'sospol':
             category = Category.objects.get(deskripsi='Sosial Politik')
-        elif request.POST['jenis_kampanye'] == 'hukum':
+        elif request.POST['jenis_seruan'] == 'hukum':
             category = Category.objects.get(deskripsi='Hukum')
-        elif request.POST['jenis_kampanye'] == 'ekonomi':
+        elif request.POST['jenis_seruan'] == 'ekonomi':
             category = Category.objects.get(deskripsi='Ekonomi')
-        elif request.POST['jenis_kampanye'] == 'pendidikan':
+        elif request.POST['jenis_seruan'] == 'pendidikan':
             category = Category.objects.get(deskripsi='Pendidikan')
-        elif request.POST['jenis_kampanye'] == 'others':
+        elif request.POST['jenis_seruan'] == 'others':
             category = Category.objects.get(deskripsi='Lainnya')
         
 
@@ -202,7 +202,7 @@ def campaign_search(request):
     else:
         category = Category.objects.get(deskripsi="Ekonomi")
         campaigns = Japat.objects.filter(category=category)
-        selected_category = request.GET.get('jenis_kampanye')
+        selected_category = request.GET.get('jenis_seruan')
         if is_valid_queryparam(selected_category):
             request.session['campaign_category'] = selected_category
             category, campaigns = getCategoryCampaigns(qs, selected_category)
@@ -216,7 +216,7 @@ def campaign_search(request):
     page_obj = paginator.get_page(page_number)
     selected_category = request.session['campaign_category']
 
-    return render(request, 'campaign_search.html', {'page_obj':page_obj, 'category':category.deskripsi, 'keyword':keyword, 'jenis_kampanye':selected_category})
+    return render(request, 'campaign_search.html', {'page_obj':page_obj, 'category':category.deskripsi, 'keyword':keyword, 'jenis_seruan':selected_category})
 
 def vote_detail(request,id):
     try:

@@ -8,9 +8,9 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('logout', views.logout, name='logout'),
     # progress
-    path('campaign_make', views.campaign_make, name='campaign_make'),
-    path('campaign_home', views.campaign_home, name='campaign_home'),
-    path('campaign_search', views.campaign_search, name='campaign_search'),
+    path('create_seruan', views.campaign_make, name='campaign_make'),
+    path('seruan', views.campaign_home, name='campaign_home'),
+    path('seruan_search', views.campaign_search, name='campaign_search'),
     path('vote/detail/<int:id>', views.vote_detail, name='vote_detail'),
     path('kebijakan', views.kebijakan_search, name='kebijakan_search'),
     path('kebijakan/detail/<int:id>', views.kebijakan_detail, name='kebijakan_detail'),

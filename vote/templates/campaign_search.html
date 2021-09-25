@@ -10,8 +10,8 @@
 {% block body %}
     <div class="page-container">
         <div class="page-header">
-            <h1>Telusuri Kampanye</h1>
-            <form method="POST" class="search-group" action="{% url 'campaign_search' %}?page=1&keyword={{keyword}}&jenis_kampanye={{ jenis_kampanye }}">
+            <h1>Telusuri Seruan</h1>
+            <form method="POST" class="search-group" action="{% url 'campaign_search' %}?page=1&keyword={{keyword}}&jenis_seruan={{ jenis_seruan }}">
               {% csrf_token %}
                 <button type="submit"><img class="search-icon" src="{% static 'img/icon-search.svg' %}" alt="search"></button>
                 <input class="search-input" name="search" type="text">
@@ -21,32 +21,32 @@
           <form method="GET" action="{% url 'campaign_search' %}">
             <div class="radio-inputs">
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="ekonomi">
+                    <input class="input-radio" type="radio" name="jenis_seruan" value="ekonomi">
                     <img class="input-img" src="{% static 'img/logo-ekonomi.svg' %}" alt="ekonomi" onload="SVGInject(this)">
                     <span class="input-desc">Ekonomi</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="hukum">
+                    <input class="input-radio" type="radio" name="jenis_seruan" value="hukum">
                     <img class="input-img" src="{% static 'img/logo-hukum.svg' %}" alt="hukum" onload="SVGInject(this)">
                     <span class="input-desc">Hukum</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="lingkungan">
+                    <input class="input-radio" type="radio" name="jenis_seruan" value="lingkungan">
                     <img class="input-img" src="{% static 'img/logo-lingkungan.svg' %}" alt="lingkungan" onload="SVGInject(this)">
                     <span class="input-desc">Lingkungan</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="pendidikan">
+                    <input class="input-radio" type="radio" name="jenis_seruan" value="pendidikan">
                     <img class="input-img" src="{% static 'img/logo-pendidikan.svg' %}" alt="pendidikan" onload="SVGInject(this)">
                     <span class="input-desc">Pendidikan</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="sospol">
+                    <input class="input-radio" type="radio" name="jenis_seruan" value="sospol">
                     <img class="input-img" src="{% static 'img/logo-sospol.svg' %}" alt="sospol" onload="SVGInject(this)">
                     <span class="input-desc">Sosial Politik</span>
                 </label>
                 <label class="radio-item">
-                    <input class="input-radio" type="radio" name="jenis_kampanye" value="others">
+                    <input class="input-radio" type="radio" name="jenis_seruan" value="others">
                     <img class="input-img" src="{% static 'img/logo-others.svg' %}" alt="others" onload="SVGInject(this)">
                     <span class="input-desc">Lainnya</span>
                 </label>
@@ -54,7 +54,7 @@
           </form>
             
 
-            <h1 class="section-header">Kampanye {{category}}</h1>
+            <h1 class="section-header">Seruan {{category}}</h1>
             
             {% if page_obj.paginator.count %}
             <div class="campaign-items">
@@ -70,8 +70,8 @@
             
                 <div class="pagination">
                     {% if page_obj.has_previous %}
-                        {% if keyword != None and jenis_kampanye != None %}
-                        <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% if keyword != None and jenis_seruan != None %}
+                        <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}','{{keyword}}','{{jenis_seruan}}')"></a>
                         {% else %}
                         <a class="arrow-left" href="#" onclick="setPage('{{page_obj.previous_page_number}}')"></a>
                         {% endif %}
@@ -80,11 +80,11 @@
                     {% endif %}
             
                     <span class="page-numbers">
-                        {% if keyword != None and jenis_kampanye != None %}
+                        {% if keyword != None and jenis_seruan != None %}
                         Page
-                        <span class="page-number" onclick="setPage('{{page_obj.number}}','{{keyword}}','{{jenis_kampanye}}')"> {{ page_obj.number }}</span>
+                        <span class="page-number" onclick="setPage('{{page_obj.number}}','{{keyword}}','{{jenis_seruan}}')"> {{ page_obj.number }}</span>
                         of
-                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}','{{keyword}}','{{jenis_kampanye}}')">{{ page_obj.paginator.num_pages}}</span>
+                        <span class="page-number" onclick="setPage('{{ page_obj.paginator.num_pages }}','{{keyword}}','{{jenis_seruan}}')">{{ page_obj.paginator.num_pages}}</span>
                         {% else %}
                         Page
                         <span class="page-number" onclick="setPage('{{page_obj.number}}')"> {{ page_obj.number }}</span>
@@ -94,8 +94,8 @@
                       </span>
                     
                     {% if page_obj.has_next %}
-                        {% if keyword != None and jenis_kampanye != None %}
-                        <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_kampanye}}')"></a>
+                        {% if keyword != None and jenis_seruan != None %}
+                        <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}','{{keyword}}','{{jenis_seruan}}')"></a>
                         {% else %}
                         <a class="arrow-right" href="#" onclick="setPage('{{page_obj.next_page_number}}')"></a>
                         {% endif %}
@@ -106,7 +106,7 @@
             </div>
             {% else %}
             <img class="vote-img" src="{% static 'img/vote.png' %}" alt="">
-            <h5 class="no-campaigns">Belum ada kampanye <br> untuk kategori {{ category|lower }}</h5>
+            <h5 class="no-campaigns">Belum ada seruan <br> untuk kategori {{ category|lower }}</h5>
             {% endif %}
 
         </div>
