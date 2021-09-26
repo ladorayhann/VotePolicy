@@ -53,7 +53,7 @@
               {% for policy in policies %}
                 <div class="kebijakan-item">
                     <a href="{% url 'kebijakan_detail' policy.pk  %}"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
-                    <div class="kebijakan-category">ekonomi</div>
+                    <div class="kebijakan-category">{{policy.category.all.0.deskripsi}}</div>
                     <p class="kebijakan-description">
                         {{policy.overview}}
                     </p>

@@ -191,7 +191,6 @@ def campaign_search(request):
         else:
             selected_category = request.session['campaign_category']
         campaigns = Japat.objects.filter(Q(category=category, content__icontains=keyword) | Q(category=category, title__icontains=keyword))
-        print(campaigns)
     elif request.GET.get('page') is not None and request.GET.get('keyword') is not None:
         if is_valid_queryparam(request.session['campaign_category']):
             category, _ = getCategoryCampaigns(qs, request.session['campaign_category'])

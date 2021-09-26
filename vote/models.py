@@ -55,7 +55,7 @@ class Vote(models.Model):
 
 class Policy(models.Model):
     title = models.CharField(max_length=1000, unique=True)
-    category = models.ForeignKey(Category, null=True, on_delete=models.RESTRICT, blank=True)
+    category = models.ManyToManyField(Category, blank=True)
     content = models.TextField(null=False)
     overview = models.TextField(null=True)
     spotify = models.URLField(null=True, blank=True)
