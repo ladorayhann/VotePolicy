@@ -24,16 +24,19 @@
                     <ul class="splide__list">
                     {% if japats %}
                       {% for japat in japats %}
+                      
                         <li class="splide__slide">
+                          <a href="{% url 'vote_detail' japat.pk  %}">
                             <div class="campaign-item">
-                                <a href="{% url 'vote_detail' japat.pk  %}">
                                     <h3 class="campaign-title">{{japat.title}}</h3>
-                                </a>
+                                
                                 <p class="campaign-description">
                                     {{japat.content}}
                                 </p>
+                            
                                 <a href="{% url 'vote_detail' japat.pk  %}" class="button-fill vote">VOTE</a>
                             </div>
+                          </a>
                         </li>
                         {% endfor %}
                         {% endif %}
@@ -51,9 +54,16 @@
 
             <div class="kebijakan-list">
               {% for policy in policies %}
+              <a href="{% url 'kebijakan_detail' policy.pk  %}">
                 <div class="kebijakan-item">
-                    <a href="{% url 'kebijakan_detail' policy.pk  %}"><h1 class="kebijakan-title">{{policy.title}}</h1></a>
-                    <div class="kebijakan-category">{{policy.category.all.0.deskripsi}}</div>
+                    <div class="header">
+                      <h1 class="kebijakan-title">{{policy.title}}</h1>
+                      <div class="cat">
+                      {% for cat in policy.category.all %}
+                      <div class="kebijakan-category">{{cat.deskripsi}}</div>
+                      {% endfor %}
+                    </div>
+                    </div>
                     <p class="kebijakan-description">
                         {{policy.overview}}
                     </p>
@@ -64,6 +74,7 @@
                         <a href={{policy.spotify|default_if_none:"#"}}><img src="{% static 'img/icon-spotify.svg' %}" alt=""> </a>
                     </div>
                 </div>
+              </a>
               {% endfor %}
 
             </div>

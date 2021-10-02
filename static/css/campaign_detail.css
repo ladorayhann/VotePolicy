@@ -340,6 +340,7 @@
     flex-direction: column;
     margin: 2em 0;
     text-align: justify;
+    width: 100%;
 }
 
 .kebijakan-content p {
@@ -473,4 +474,12 @@
 
 .arrow-left {
   transform: rotate(45deg);
+}
+
+ul{
+  margin-left:50px;
+}
+
+.section-content ol {
+  margin-left:30px;
 }
