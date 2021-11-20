@@ -483,3 +483,7 @@ ul{
 .section-content ol {
   margin-left:30px;
 }
+
+b {
+  font-weight: 600;
+}

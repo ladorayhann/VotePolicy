@@ -101,6 +101,11 @@
     </div>
 
 {% block script %}
+<script>
+  $('b').each(function(index, element) {
+    console.log(element.textContent);
+});
+</script>
 <script src="{% static 'js/kebijakan_detail.js' %}" ></script>
 <script src="{% static 'js/kebijakan_search.js' %}" ></script>
 {% endblock script %}

@@ -8,7 +8,6 @@
 <link href="{% static 'css/campaign_detail.css' %}" rel="stylesheet">
 {% endblock style %}
 
-
 {% block body %}
     <div class="page-container">
         <div class="page-header">
@@ -19,9 +18,27 @@
 
             <div class="campaign-category"> {{category}} </div>
 
-            <p class="campaign-description">
-                {{campaign.content}}
-            </p> 
+            
+            <div class="kebijakan-content">
+              <div class="card">
+                <button class="section-accordion active">
+                  <h3> <b> INFORMASI UMUM </b> </h3> 
+                  <div class="accordion-arrow"></div>
+               </button>
+               <div class="section-content active">
+              {{campaign.content | safe}}
+               </div>
+               <button class="section-accordion">
+                <h3> <b> Target </b> </h3> 
+                <div class="accordion-arrow"></div>
+             </button>
+             <div class="section-content">
+            {{campaign.target | safe}}
+             </div>
+               
+            </div>
+
+          </div>
 
             {% if campaign.url_file != None %}
             <embed 
@@ -226,7 +243,13 @@
 
 {% endblock body %}
 {% block script %}
+<script>
+  $('b').each(function(index, element) {
+    console.log(element.textContent);
+});
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 <script src="{% static 'js/vote.js' %}" ></script>
 <script src="{% static 'js/kebijakan_search.js' %}" ></script>
+<script src="{% static 'js/kebijakan_detail.js' %}" ></script>
 {% endblock script %}

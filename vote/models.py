@@ -25,6 +25,7 @@ class Japat(models.Model):
     title = models.CharField(max_length=100, unique=False)
     target = models.CharField(max_length=100, null=False, default="")
     content = models.TextField(null=False, default="")
+    overview = models.TextField(null=True)
     image = models.ImageField(null=True, blank=True)
     url_file = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)

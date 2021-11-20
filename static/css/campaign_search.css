@@ -186,17 +186,6 @@
     font-weight: bold;
 }
 
-.campaign-description {
-    grid-area: desc;
-    font-size: smaller;
-    text-align: justify;
-    line-height: 1.4em;
-    -webkit-line-clamp: 8;
-    max-height: 11.2em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
 .campaign-img {
     grid-area: img;
     max-height: 10em;
@@ -312,6 +301,21 @@
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical; 
+}
+
+.campaign-description {
+  grid-area: desc;
+  font-size: smaller;
+  text-align: justify;
+  line-height: 1.4em;
+  -webkit-line-clamp: 8;
+  max-height: 11.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  overflow-wrap:break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical; 
+
 }
 
 .kebijakan-category-logo {
