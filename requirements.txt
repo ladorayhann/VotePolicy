@@ -81,8 +81,8 @@ PyYAML==5.4.1
 regex==2021.3.17
 requests-toolbelt==0.7.0
 rsa==4.7.2
-ruamel.yaml==0.16.13
-ruamel.yaml.clib==0.2.2
+# ruamel.yaml==0.16.13
+# ruamel.yaml.clib==0.2.2
 shellescape==3.8.1
 six==1.15.0
 sqlparse==0.4.1
