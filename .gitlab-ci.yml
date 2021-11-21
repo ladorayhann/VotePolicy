@@ -12,7 +12,7 @@ variables:
   POSTGRES_PASSWORD: postgres
 
 Testing:
-    image: python:latest
+    image: python:3.8
     stage: test
     script:
     - export DATABASE_URL=postgres://postgres:postgres@postgres:5432/votepolicy
