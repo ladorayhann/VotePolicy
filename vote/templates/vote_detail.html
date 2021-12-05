@@ -6,6 +6,9 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="{% static 'js/vote_detail.js' %}" ></script>
 <link href="{% static 'css/campaign_detail.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>      
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 {% endblock style %}
 
 {% block body %}
@@ -28,13 +31,22 @@
                <div class="section-content active">
               {{campaign.content | safe}}
                </div>
-               <button class="section-accordion">
+               {% if icons != None %}
+               <button class="section-accordion active">
                 <h3> <b> Target </b> </h3> 
                 <div class="accordion-arrow"></div>
              </button>
-             <div class="section-content">
-            {{campaign.target | safe}}
+             <div class="section-content active">
+              <div class="icons_parent">
+                    {% for icon in icons %}
+                    <img src="{{icon}}" style="width:250px;height:250px;margin: 0px 50px;
+                    display: block;">
+                    {% endfor %}
+            </div>
+              
+            <!-- {{campaign.target | safe}} -->
              </div>
+             {% endif %}
                
             </div>
 

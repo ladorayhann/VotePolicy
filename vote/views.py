@@ -267,6 +267,9 @@ def vote_detail(request,id):
     paginator = Paginator(comments_vote, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    target_icons = None
+    if campaign_detail.url != None:
+        target_icons = campaign_detail.url.split(",")
     context = {
         "campaign": campaign_detail,
         "category": category.deskripsi,
@@ -278,6 +281,7 @@ def vote_detail(request,id):
         "recaptcha_sitekey" : RECAPTCHA_SITE_KEY,
         "media_root":MEDIA_ROOT,
         "media_url":MEDIA_URL,
+        "icons": target_icons,
     }
     return render(request, 'vote_detail.html', context)
 

@@ -12,7 +12,7 @@
         </div>
         {{ request.user.name }}
         <div class="page-content">
-            <form class="form-box" action="{% url 'profile_update' %}" method="POST">
+            <!-- <form class="form-box" action="{% url 'profile_update' %}" method="POST"> -->
                 <div class="form-field">
                     <div class="form-label">Username</div>
                     <input class="form-input" type="text" value="{{request.user.username}}" readonly>
@@ -21,9 +21,9 @@
                     <div class="form-label">Email</div>
                     <input class="form-input" type="text" value="{{request.user.email}}" readonly>
                 </div>
-                <button class="button-fill">UBAH PROFIL</button>
-                {% csrf_token %}
-            </form>
+                <!-- <button class="button-fill">UBAH PROFIL</button> -->
+                <!-- {% csrf_token %} -->
+            <!-- </form> -->
         </div>
     </div>
    

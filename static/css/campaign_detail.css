@@ -487,3 +487,10 @@ ul{
 b {
   font-weight: 600;
 }
+
+.icons_parent {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

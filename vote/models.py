@@ -28,7 +28,7 @@ class Japat(models.Model):
     overview = models.TextField(null=True)
     image = models.ImageField(null=True, blank=True)
     url_file = models.URLField(null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
+    url = models.TextField(null=True, blank=True)
     created_time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
